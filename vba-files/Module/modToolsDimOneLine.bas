@@ -5,6 +5,12 @@ Option Compare Text
 Option Base 1
 
 
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Sub        : dimMultiLine - Converts single-line Dim declarations to multiple lines
+'* Created    : 22-03-2023 14:25
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Sub dimMultiLine()
     Call RemoveLineNumbersPublic
     Dim objVBCitem  As VBIDE.CodeModule
@@ -32,6 +38,12 @@ Public Sub dimMultiLine()
     Call ReBild
 End Sub
 
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Sub        : dimOneLine - Converts multiple-line Dim declarations to a single line
+'* Created    : 22-03-2023 14:25
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Sub dimOneLine()
     Call RemoveLineNumbersPublic
     Dim objVBCitem  As VBIDE.CodeModule
@@ -64,4 +76,3 @@ Public Sub dimOneLine()
     Call SetCodeInModule(objVBCitem, sCodeNew)
     Call ReBild
 End Sub
-

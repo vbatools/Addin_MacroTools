@@ -6,7 +6,7 @@ Option Base 1
 
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : GetSelectControl - получение выделленого контрола на форме в конструкторе VBE
+'* Function   : GetSelectControl - Gets the selected control from the form in VBE
 '* Created    : 22-03-2023 16:01
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -45,16 +45,16 @@ Public Function GetSelectControl(Optional bUserForm As Boolean = False) As Objec
 ErrorHandler:
     Select Case Err.Number
         Case 9:
-            Debug.Print "Для работы инструмента, откройте окно View -> Properties Window"
+            Debug.Print "An error occurred, please check View -> Properties Window"
         Case Else:
-            Debug.Print "Ошибка! в GetSelectControl" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in GetSelectControl" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("GetSelectControl")
     End Select
     Err.Clear
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : getSelectedControlsCollection - получение коллекции выделеных контролов на форме в конструкторе VBE
+'* Function   : getSelectedControlsCollection - Gets the collection of selected controls from the form in VBE
 '* Created    : 22-03-2023 16:00
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -74,7 +74,7 @@ End Function
 
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : getActiveModule - получение активного модуля VBA
+'* Function   : getActiveModule - Gets the active VBA module
 '* Created    : 22-03-2023 16:00
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -84,13 +84,13 @@ Public Function getActiveModule() As VBComponent
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : GetCodeFromModule - получить код из модуля в строковую переменную
+'* Function   : GetCodeFromModule - Gets code from a module
 '* Created    : 20-04-2020 18:20
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                             Description
 '*
-'* ByRef objVBComp As VBIDE.VBComponent : модуль VBA
+'* ByRef objVBComp As VBIDE.VBComponent : VBA module
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Function GetCodeFromModule(ByRef moCM As VBIDE.CodeModule) As String
@@ -99,14 +99,14 @@ Public Function GetCodeFromModule(ByRef moCM As VBIDE.CodeModule) As String
     End With
 End Function
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : SetCodeInModule - загрузить код из строковой переменой в модуль
+'* Sub        : SetCodeInModule - Sets code in a module
 '* Created    : 20-04-2020 18:21
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                             Description
 '*
-'* ByRef objVBComp As VBIDE.VBComponent : модуль VBA
-'* ByVal SCode As String                : строковая переменная
+'* ByRef objVBComp As VBIDE.VBComponent : VBA module
+'* ByVal SCode As String                : Code to insert
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Sub SetCodeInModule(ByRef moCM As VBIDE.CodeModule, ByVal sCode As String)
@@ -117,7 +117,7 @@ Public Sub SetCodeInModule(ByRef moCM As VBIDE.CodeModule, ByVal sCode As String
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : WhatIsTextInComboBoxHave - получение текущего значения в CommboBox понели инструментов редактора VBE
+'* Function   : WhatIsTextInComboBoxHave - Gets the text value in a ComboBox control in VBE
 '* Created    : 22-03-2023 14:34
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -136,7 +136,7 @@ Public Function WhatIsTextInComboBoxHave(ByVal sTagCombobox As String) As String
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : TrimLinesTabAndSpase - удаляем крайние табуляции и пробелы (все строки прижимаются к левому краю):
+'* Sub        : TrimLinesTabAndSpase - Trims spaces and tabs from lines (for formatting purposes):
 '* Created    : 22-03-2023 16:23
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -167,7 +167,7 @@ Public Function fnTrimLinesTabAndSpase(ByVal strLine As String) As String
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : VBAIsTrusted - проверка доступа к объектной моделе VBA
+'* Function   : VBAIsTrusted - Checks if VBA is trusted in settings
 '* Created    : 22-03-2023 14:33
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -182,15 +182,14 @@ ErrorHandler:
     Select Case Err.Number
         Case 1004:
             'If ThisWorkbook.Name = C_Const.NAME_ADDIN & ".xlam" Then
-            Call MsgBox("Предупреждение! " & modAddinConst.NAME_ADDIN & vbLf & vbNewLine & _
-                    "Отключено: [Доверять доступ к объектной модели VBE]" & vbLf & _
-                    "Для включения перейдите: Файл->Параметры->Центр управления безопасностью->Параметры макросов" & _
-                    vbLf & vbNewLine & "И перезапустите Excel", vbCritical, "Предупреждение:")
+            Call MsgBox("Security Warning! " & modAddinConst.NAME_ADDIN & vbLf & vbNewLine & _
+                    "Solution: [Enable Trust Access to VBA Project Settings]" & vbLf & _
+                    "To enable: File->Options->Trust Center->Trust Center Settings->Macro Settings" & _
+                    vbLf & vbNewLine & "in Excel", vbCritical, "Security Warning:")
         Case Else:
-            Debug.Print "Ошибка! в VBAIsTrusted" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in VBAIsTrusted" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("VBAIsTrusted")
     End Select
     Err.Clear
     VBAIsTrusted = False
 End Function
-

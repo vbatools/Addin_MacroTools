@@ -5,8 +5,10 @@ Option Compare Text
 Option Base 1
 
 
+
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : UperTextInControl - изменение подписи, текста большими буквами в контроле
+'* Sub        : UperTextInControl - Changes text in controls to uppercase
 '* Created    : 01-07-2022 11:12
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -14,8 +16,9 @@ Option Base 1
 Public Sub UperTextInControl()
     Call LowerAndUperTextInControl(True)
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : LowerTextInControl - изменение подписи, текста маленькими буквами в контроле
+'* Sub        : LowerTextInControl - Changes text in controls to lowercase
 '* Created    : 22-03-2023 16:07
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -23,8 +26,9 @@ End Sub
 Public Sub LowerTextInControl()
     Call LowerAndUperTextInControl(False)
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : LowerAndUperTextInControl - изменение регистра подписи, текста в контроле на большие или маленькие буквы
+'* Sub        : LowerAndUperTextInControl - Changes text in controls to upper or lower case
 '* Created    : 22-03-2023 16:08
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -51,8 +55,9 @@ Private Sub LowerAndUperTextInControl(ByVal bUCase As Boolean)
         End If
     End If
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : UperTextInForm - изменение текста в форме большими буквами
+'* Sub        : UperTextInForm - Changes text in form to uppercase
 '* Created    : 22-03-2023 16:05
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -60,8 +65,9 @@ End Sub
 Public Sub UperTextInForm()
     Call LowerAndUperTextInForm(True)
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : LowerTextInForm - изменение текста в форме маленькими буквами
+'* Sub        : LowerTextInForm - Changes text in form to lowercase
 '* Created    : 22-03-2023 16:05
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -69,8 +75,9 @@ End Sub
 Public Sub LowerTextInForm()
     Call LowerAndUperTextInForm(False)
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : LowerAndUperTextInForm - изменение текста в форме большми или маленькими буквами
+'* Sub        : LowerAndUperTextInForm - Changes text in form to upper or lower case
 '* Created    : 22-03-2023 16:03
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -92,8 +99,9 @@ Private Sub LowerAndUperTextInForm(ByVal bUCase As Boolean)
         End If
     End With
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : toUpperCase - перевод выделенного кода в ВЕРХНИЙ регистр
+'* Sub        : toUpperCase - Converts selected text to uppercase
 '* Created    : 18-02-2020 09:05
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -133,12 +141,13 @@ ErrorHandler:
     Select Case Err.Number
         Case 0
         Case Else
-            Debug.Print "Ошибка! в U_UpperAndLowerCase.toUpperCase" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in U_UpperAndLowerCase.toUpperCase" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("U_UpperAndLowerCase.toUpperCase")
     End Select
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : toLowerCase - перевод выделенного кода в нижний регистр
+'* Sub        : toLowerCase - Converts selected text to lowercase
 '* Created    : 18-02-2020 09:06
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -180,7 +189,7 @@ ErrorHandler:
     Select Case Err.Number
         Case 0
         Case Else
-            Debug.Print "Ошибка! в U_UpperAndLowerCase.toLowerCase" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in U_UpperAndLowerCase.toLowerCase" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("U_UpperAndLowerCase.toLowerCase")
     End Select
 End Sub

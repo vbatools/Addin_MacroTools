@@ -6,7 +6,7 @@ Option Base 1
 
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : debugOn - заменить "'Debug.Print" на "Debug.Print"
+'* Sub        : debugOn - Replaces "'Debug.Print" with "Debug.Print"
 '* Created    : 07-06-2023 10:50
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -16,7 +16,7 @@ Public Sub debugOn()
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : debugOff - заменить "Debug.Print" на "'Debug.Print"
+'* Sub        : debugOff - Replaces "Debug.Print" with "'Debug.Print"
 '* Created    : 07-06-2023 10:49
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -25,15 +25,15 @@ Public Sub debugOff()
     Call findeReplaceWordInCodeVBPrj("Debug.Print", "'Debug.Print")
 End Sub
 
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : findeReplaceWordInCodeVBPrj - поиск и замена текста в коде VBA, во всех модулях файла или в выбраном
+'* * * * * *
+'* Sub        : findeReplaceWordInCodeVBPrj - Finds and replaces text in VBA code, depending on selected scope
 '* Created    : 07-06-2023 10:49
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                 Description
 '*
-'* ByVal sFinde As String   : искомый текст
-'* ByVal sReplace As String : заменяемый текст
+'* ByVal sFinde As String   : Text to find
+'* ByVal sReplace As String : Replacement text
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Sub findeReplaceWordInCodeVBPrj(ByVal sFinde As String, ByVal sReplace As String)
@@ -53,22 +53,22 @@ ErrorHandler:
         Case 91:
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в ReBild" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in ReBild" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("ReBild")
     End Select
     Err.Clear
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : findeReplaceWordInCode - поиск и замена текста в коде VBA
+'* Sub        : findeReplaceWordInCode - Finds and replaces text in VBA code
 '* Created    : 07-06-2023 10:49
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                             Description
 '*
-'* ByRef objVBComp As VBIDE.VBComponent : VBA компонент в котором ищем текст для замены
-'* ByVal sFinde As String               : искомый текст
-'* ByVal sReplace As String             : заменяемый текст
+'* ByRef objVBComp As VBIDE.VBComponent : VBA component where the search and replace occurs
+'* ByVal sFinde As String               : Text to find
+'* ByVal sReplace As String             : Replacement text
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Sub findeReplaceWordInCode(ByRef objVBComp As VBIDE.CodeModule, ByVal sFinde As String, ByVal sReplace As String)
@@ -78,4 +78,3 @@ Private Sub findeReplaceWordInCode(ByRef objVBComp As VBIDE.CodeModule, ByVal sF
     sCode = VBA.Replace(sCode, sFinde, sReplace)
     Call SetCodeInModule(objVBComp, sCode)
 End Sub
-

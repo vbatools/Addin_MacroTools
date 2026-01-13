@@ -4,13 +4,13 @@ Option Private Module
 Option Compare Text
 Option Base 1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : L_IndentRoutine - форматирование кода VBA
+'* Module     : L_IndentRoutine - VBA Indentation Module
 '* Created    : 15-09-2019 15:48
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-'***************************************************************************
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 '*
 '* PROJECT NAME:    SMART INDENTER
 '* AUTHOR:          STEPHEN BULLEN, Office Automation Ltd.
@@ -26,14 +26,14 @@ Option Base 1
 '* THIS MODULE:     Contains the main procedure to rebuild the code's indenting
 '*
 '* PROCEDURES:
-'*   RebuildModule      Копирует модуль кода в массив для перестроения и резервная копия
-'*   RebuildCodeArray   Основная процедура для форматирования кода
-'*   fnFindFirstItem    Проверьте, содержит ли строка кода какие-либо специальные служебные слова
-'*   CheckLine          Добавить или удалить отступ
-'*   ArrayFromVariant   Преобразование массива variant в массив string для более быстрой обработки
-'*   fnAlignFunction    Поиск где необходим отступ для продолжения
+'*   RebuildModule      Rebuilds the indenting for a procedure or module
+'*   RebuildCodeArray   Rebuilds the indenting for a code array
+'*   fnFindFirstItem    Finds the first occurrence of a key item in a line
+'*   CheckLine          Checks a line for indenting requirements
+'*   ArrayFromVariant   Converts a variant array to a string array for comparison
+'*   fnAlignFunction    Locates the start of the first parameter in a line
 '*
-'***************************************************************************
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 '*
 '* CHANGE HISTORY
 '*
@@ -44,11 +44,11 @@ Option Base 1
 '*  24/05/2000  Stephen Bullen      Improved routine for aligning continued lines
 '*  27/05/2000  Stephen Bullen      Fix comments with Type/Enum, Rem handling and brackets in strings
 '*  04/07/2000  Stephen Bullen      Fix handling of aligned 'As' items and continued lines
-'*  24/11/2000  Stephen Bullen      Added maintenance of Members' attributes for VB5 and 6
+'*  24/1/2000  Stephen Bullen      Added maintenance of Members' attributes for VB5 and 6
 '*  07/10/2004  Stephen Bullen      Changed to Office Automation
 '*  09/10/2004  Stephen Bullen      Bug fixes and more options
 '*
-'***************************************************************************
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 'UDT to store Undo information
 Public Type uUndo
     oMod            As CodeModule
@@ -61,22 +61,21 @@ End Type
 Public pauUndo()    As uUndo
 Const miTAB         As Integer = 9
 Public piUndoCount  As Integer
-'переменые массва to hold the code items to look for
+'Variable arrays to hold the code items to look for
 'Variant arrays to hold the code items to look for
 Dim masInProc() As String, masInCode() As String, masOutProc() As String, masOutCode() As String
 Dim masDeclares() As String, masLookFor() As String, masFnAlign() As String
-'Переменные для хранения наших вариантов отступов
+'Variables for storing configuration settings
 Dim mbIndentProc As Boolean, mbIndentCmt As Boolean, mbIndentCase As Boolean, mbAlignCont As Boolean, mbIndentDim As Boolean
 Dim mbIndentFirst As Boolean, mbAlignDim As Boolean, mbDebugCol1 As Boolean, mbEnableUndo As Boolean
 Dim miIndentSpaces As Integer, miEOLAlignCol As Integer, miAlignDimCol As Integer, mbCompilerStuffCol1 As Boolean
 Dim mbIndentCompilerStuff As Boolean, mbAlignIgnoreOps As Boolean
-'Переменные для хранения оперативной информации
 'Variables to hold operational information
 Dim mbInitialised As Boolean, mbContinued As Boolean, mbInIf As Boolean, mbNoIndent As Boolean, mbFirstProcLine As Boolean
 Dim msEOLComment    As String
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : CutTab - удалить все Tab из кода VBA
+'* Sub        : CutTab - Removes Tabs from VBA code
 '* Created    : 08-10-2020 14:08
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -95,18 +94,18 @@ Public Sub CutTab()
     Exit Sub
 ErrorHandler:
     If Err.Number <> 91 Then
-        Debug.Print "Ошибка! в CutTab" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+        Debug.Print "Error in CutTab" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
         'Call WriteErrorLog("CutTab")
     End If
     Err.Clear
 End Sub
 
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : ReBild - запуск инструмента форматирования кода VBA
+'* * * * * *
+'* Sub        : ReBild - Rebuilds VBA code indentation
 '* Created    : 23-03-2023 10:37
 '* Author     : VBATools
 '* Copyright  : Apache License
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* * * * * *
 Public Sub ReBild()
     Dim moCM        As CodeModule
     Dim vbComp      As VBIDE.VBComponent
@@ -127,35 +126,35 @@ ErrorHandler:
         Case 91:
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в ReBild" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in ReBild" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("ReBild")
     End Select
     Err.Clear
 End Sub
-''''''''''''''''''''''''''''''''''
+''''''''''''
 ' Function:   RebuildModule
 '
 ' Comments:   This procedure goes through the lines in a module,
 '             rebuilding the code's indenting.
 '
-' Arguments:  modCode    - The code module to indent
+' Arguments: modCode    - The code module to indent
 '             sName      - The display name of the item being indented
 '             iStartLine - Value giving the line to start indenting from
 '             iEndLine   - Value giving the line to end indenting at
 '             iProgDone  - Value giving how much indenting has been done in total
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : RebuildModule - форматирование кода в модуле VBA
+'* Sub        : RebuildModule - Rebuilds indentation in a VBA module
 '* Created    : 23-03-2023 10:37
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                                     Description
 '*
-'* ByRef modCode As CodeModule                   : модуль VBA
-'* ByRef sName As String                         : имя модуля
-'* ByRef iStartLine As Long                      : начальная строка кода с которой начинается форматирование
-'* ByRef iEndline As Long                        : конечная строка кода с которой начинается форматирование
-'* ByRef iProgDone As Long                       : количество отступов
-'* Optional ByRef mbEnableUndo As Boolean = True : возможность отменить изменения
+'* ByRef modCode As CodeModule                   : VBA Module
+'* ByRef sName As String                         : Module name
+'* ByRef iStartLine As Long                      : Starting line for indentation
+'* ByRef iEndline As Long                        : Ending line for indentation
+'* ByRef iProgDone As Long                       : Progress indicator
+'* Optional ByRef mbEnableUndo As Boolean = True : Enable undo functionality
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Sub RebuildModule( _
@@ -169,7 +168,7 @@ Private Sub RebuildModule( _
     If iEndline = 0 Then Exit Sub    'On Error Resume Next
     ReDim asCode(0 To iEndline - iStartLine)
     ReDim asOriginal(0 To iEndline - iStartLine)
-    'Это позволило отменить? Если это так, настройте наше хранилище
+    'To save undo information? If yes, save it
     If mbEnableUndo Then
         piUndoCount = piUndoCount + 1
         'Make some space in our undo array
@@ -206,21 +205,20 @@ Private Sub RebuildModule( _
         If mbEnableUndo Then pauUndo(piUndoCount).asIndented(i) = asCode(i)
     Next
 End Sub
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : RebuildCodeArray - изменение кода в массиве
+'* * * * * *
+'* Sub        : RebuildCodeArray - Rebuilds indentation in an array
 '* Created    : 23-03-2023 10:42
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):         Description
 '*
-'* ByRef asCodeLines( : массив строк кода
+'* ByRef asCodeLines( : Array of code lines
 '*
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* * * * * *
 Public Sub RebuildCodeArray( _
         ByRef asCodeLines() As String, _
         ByRef sName As String, _
         ByRef iProgDone As Long)
-    'Переменные, используемые для кода отступа
     'Variables used for the indenting code
     Dim X As Integer, i As Integer, j As Integer, k As Integer, iGap As Integer, iLineAdjust As Integer
     Dim lLineCount As Long, iCommentStart As Long, iStart As Long, iScan As Long, iDebugAdjust As Integer
@@ -557,7 +555,7 @@ Public Sub RebuildCodeArray( _
                             iIndents = 0
                         End If
                 End Select
-PTR_NEXT_PART:
+            PTR_NEXT_PART:
             Loop Until iScan > Len(sLine)    'Part of the line
             'Do we have some code left to check?
             '(i.e. a line without a comment or the last segment of a multi-statement line)
@@ -604,7 +602,7 @@ PTR_NEXT_PART:
             End If
             mbContinued = (Right$(Trim$(sLine), 2) = " _")
         End If    'Anything there?
-PTR_REPLACE_LINE:
+    PTR_REPLACE_LINE:
         'Add the code line number back in
         If iCodeLineNum > -1 Then
             sCodeLineNum = CStr(iCodeLineNum)
@@ -642,7 +640,7 @@ End Sub
 '    Updates the iFrom parameter to point to the location of the found item
 '
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : fnFindFirstItem - поиск первого вхождения искомой строки кода
+'* Function   : fnFindFirstItem - Finds the first occurrence of a key item in a line
 '* Created    : 23-03-2023 10:43
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -674,7 +672,7 @@ Private Function fnFindFirstItem(ByRef sLine As String, ByRef iFrom As Long) As 
 End Function
 '  Check the line (segment) to see if it needs in- or out-denting
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : CheckLine - проверка строки кода на перемещение вперед или начад
+'* Function   : CheckLine - Checks a line for indenting requirements
 '* Created    : 23-03-2023 10:44
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -779,7 +777,7 @@ Private Function CheckLine( _
 End Function
 ' Convert a Variant array to a string array for faster comparisons
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : ArrayFromVariant - преобразует массив в массив строк для более быстрого сравнения
+'* Sub        : ArrayFromVariant - Converts a variant array to a string array for faster comparisons
 '* Created    : 23-03-2023 10:45
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -787,7 +785,7 @@ End Function
 '*
 '* ByRef asString( :
 '*
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* * * * * *
 Private Sub ArrayFromVariant(ByRef asString() As String, ByRef vaVariant As Variant)
     Dim iLow As Integer, iHigh As Integer, i As Integer
     On Error Resume Next
@@ -800,7 +798,7 @@ Private Sub ArrayFromVariant(ByRef asString() As String, ByRef vaVariant As Vari
 End Sub
 ' Locate the start of the first parameter on the line
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : fnAlignFunction - поиск начала первого параметра в строке
+'* Function   : fnAlignFunction - Locates the start of the first parameter in a line
 '* Created    : 23-03-2023 10:46
 '* Author     : VBATools
 '* Copyright  : Apache License

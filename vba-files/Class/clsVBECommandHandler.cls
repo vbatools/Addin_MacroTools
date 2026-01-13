@@ -8,11 +8,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
-
-Option Compare Text
-Option Base 1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : VBECommandHandler - обратные вызовы для меню VBE
+'* Module     : VBECommandHandler - Handles events for buttons in VBE
 '* Created    : 01-20-2020 15:55
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -21,13 +18,14 @@ Option Base 1
 Public WithEvents EvtHandler As CommandBarButton
 Attribute EvtHandler.VB_VarHelpID = -1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : VBECommandHandler - обратные вызовы для меню VBE
+'* Module     : VBECommandHandler - Handles events for buttons in VBE
 '* Created    : 01-20-2020 15:55
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : EvtHandler_Click - класс создания события клика по кнопке, для панели инструментов VBE
+'* Sub        : EvtHandler_Click - Event handler for button clicks in the VBE environment
 '* Created    : 23-03-2023 10:28
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -43,7 +41,7 @@ Private Sub EvtHandler_Click(ByVal Ctrl As CommandBarButton, CancelDefault As Bo
     Exit Sub
 ErrorHandler:
     If Err.Number <> 0 Then
-        Debug.Print "Ошибка! в EvtHandler_Click" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+        Debug.Print "Error in EvtHandler_Click" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
         'Call WriteErrorLog("EvtHandler_Click")
         Err.Clear
     End If

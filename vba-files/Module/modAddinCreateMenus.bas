@@ -5,7 +5,7 @@ Option Compare Text
 Option Base 1
 Private ToolContextEventHandlers As Collection
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : RefreshMenu - перезагрузка меню инструментов надстройки в редакторе кода VBE
+'* Sub        : RefreshMenu - Refreshes the add-in menu in the VBE main menu
 '* Created    : 22-03-2023 14:36
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -13,11 +13,11 @@ Private ToolContextEventHandlers As Collection
 Public Sub RefreshMenu()
     Call DeleteContextMenus
     Call AddContextMenus
-    Call MsgBox("Перезагрузка надстройки " & modAddinConst.NAME_ADDIN & " прошла!", vbInformation, "Перезагрузка надстройки " & modAddinConst.NAME_ADDIN & ":")
+    Call MsgBox("Refresh of " & modAddinConst.NAME_ADDIN & " add-in completed!", vbInformation, "Refresh " & modAddinConst.NAME_ADDIN & ":")
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : Auto_Open - запуск создания меню в редакторе кода VBE
+'* Sub        : Auto_Open - Runs when the add-in is loaded in the VBE environment
 '* Created    : 22-03-2023 14:27
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -27,7 +27,7 @@ Private Sub Auto_Open()
     Call AddContextMenus
 End Sub
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : Auto_Close - удаление меню в редакторе кода VBE, при закрытии надстройки
+'* Sub        : Auto_Close - Runs when the add-in is unloaded from the VBE environment, removing menus
 '* Created    : 22-03-2023 14:31
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -37,7 +37,7 @@ Private Sub Auto_Close()
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : AddContextMenus - создания меню в редакторе кода VBE
+'* Sub        : AddContextMenus - Adds menus to the VBE environment
 '* Created    : 22-03-2023 14:27
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -45,7 +45,7 @@ End Sub
 Public Sub AddContextMenus()
 
     Call AddNewCommandBarMenu(modAddinConst.MENU_MOVE_CONTROLS)
-    Call AddButtom(984, "Справка по инструменту", "HelpMoveControl", modAddinConst.MENU_MOVE_CONTROLS, vbNullString, False, True)
+    Call AddButtom(984, "Help Move Controls", "HelpMoveControl", modAddinConst.MENU_MOVE_CONTROLS, vbNullString, False, True)
     Call AddButtom(38, "Move Up", "MoveControlUp", modAddinConst.MENU_MOVE_CONTROLS, vbNullString)
     Call AddButtom(40, "Move Down", "MoveControlDown", modAddinConst.MENU_MOVE_CONTROLS, vbNullString, False, True)
     Call AddButtom(39, "Move Left", "MoveControlLeft", modAddinConst.MENU_MOVE_CONTROLS, vbNullString)
@@ -55,27 +55,27 @@ Public Sub AddContextMenus()
     Call AddNewCommandBarMenu(modAddinConst.MENU_TOOLS)
     Call AddButtom(107, "Option's Explicit and Private Module", "insertOptionsExplicitAndPrivateModule", modAddinConst.MENU_TOOLS, vbNullString, False, False)
     Call AddButtom(0, "Option's", "subOptionsForm", modAddinConst.MENU_TOOLS, vbNullString, True, True)
-    Call AddButtom(984, "Справка по надстройке", "HelpMainAddin", modAddinConst.MENU_TOOLS, vbNullString, False, True)
-    Call AddButtom(7460, "В несколько строк Dim's", "dimMultiLine", modAddinConst.MENU_TOOLS, vbNullString)
-    Call AddButtom(7772, "В одну строку Dim's", "dimOneLine", modAddinConst.MENU_TOOLS, vbNullString, False, True)
-    Call AddButtom(7770, "Закомментировать 'Debug.print", "debugOff", modAddinConst.MENU_TOOLS, vbNullString)
-    Call AddButtom(7771, "Раскомментировать Debug.print", "debugOn", modAddinConst.MENU_TOOLS, vbNullString, False, True)
-    Call AddButtom(699, "Удалить двойные пустые строки", "delTwoEmptyStrings", modAddinConst.MENU_TOOLS, vbNullString)
-    Call AddButtom(3917, "Удалить форматирование Кода", "CutTab", modAddinConst.MENU_TOOLS, vbNullString)
-    Call AddButtom(3919, "Форматировать Код", "ReBild", modAddinConst.MENU_TOOLS, vbNullString, False, True)
-    Call AddButtom(12, "Удалить нумерацию строк", "RemoveLineNumbersPublic", modAddinConst.MENU_TOOLS, vbNullString)
-    Call AddButtom(11, "Создать нумерацию строк", "AddLineNumbers_", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(984, "Help Main Add-in", "HelpMainAddin", modAddinConst.MENU_TOOLS, vbNullString, False, True)
+    Call AddButtom(7460, "Multiline Dim's", "dimMultiLine", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(7772, "Single Line Dim's", "dimOneLine", modAddinConst.MENU_TOOLS, vbNullString, False, True)
+    Call AddButtom(7770, "Disable 'Debug.print'", "debugOff", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(7771, "Enable Debug.print", "debugOn", modAddinConst.MENU_TOOLS, vbNullString, False, True)
+    Call AddButtom(699, "Remove Double Empty Lines", "delTwoEmptyStrings", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(3917, "Cut Tab", "CutTab", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(3919, "Rebuild", "ReBild", modAddinConst.MENU_TOOLS, vbNullString, False, True)
+    Call AddButtom(12, "Remove Line Numbers", "RemoveLineNumbersPublic", modAddinConst.MENU_TOOLS, vbNullString)
+    Call AddButtom(11, "Add Line Numbers", "AddLineNumbers_", modAddinConst.MENU_TOOLS, vbNullString)
     Call AddComboBox(modAddinConst.MENU_TOOLS, modAddinConst.MENU_TOOLS, modAddinConst.TYPE_SELECTED_MODULE, Array(modAddinConst.TYPE_ALL_VBAPROJECT, modAddinConst.TYPE_SELECTED_MODULE))
 
 
-    Call AddButtom(9634, "Поменять местами относ [=]", "SwapEgual", modAddinConst.MENU_CODE_WINDOW, "SwapEgual", True, False)
+    Call AddButtom(9634, "Swap Assignment [=]", "SwapEgual", modAddinConst.MENU_CODE_WINDOW, "SwapEgual", True, False)
     Call AddButtom(0, "UPPER Case", "toUpperCase", modAddinConst.MENU_CODE_WINDOW, "toUpperCase", True, False)
     Call AddButtom(0, "lower Case", "toLowerCase", modAddinConst.MENU_CODE_WINDOW, "toLowerCase", True, False)
-    Call AddButtom(22, "Вставить код", "InsertCode", modAddinConst.MENU_CODE_WINDOW, "InsertCode", True, False)
+    Call AddButtom(22, "Insert Code", "InsertCode", modAddinConst.MENU_CODE_WINDOW, "InsertCode", True, False)
 
-    Call AddButtom(1650, "Aling Horiz", "vbaCntAlingHoriz", modAddinConst.MENU_FORMS, "Aling Horiz", True)
-    Call AddButtom(1653, "Aling Vert", "vbaCntAlingVert", modAddinConst.MENU_FORMS, "Aling Vert", True)
-    Call AddButtom(162, "ReName Control", "RenameControl", modAddinConst.MENU_FORMS, "ReName Control", True)
+    Call AddButtom(1650, "Align Horiz", "vbaCntAlingHoriz", modAddinConst.MENU_FORMS, "Align Horiz", True)
+    Call AddButtom(1653, "Align Vert", "vbaCntAlingVert", modAddinConst.MENU_FORMS, "Align Vert", True)
+    Call AddButtom(162, "Rename Control", "RenameControl", modAddinConst.MENU_FORMS, "Rename Control", True)
     Call AddButtom(22, "Paste Style", "PasteStyleControl", modAddinConst.MENU_FORMS, "Paste Style", True)
     Call AddButtom(1076, "Copy Style", "CopyStyleControl", modAddinConst.MENU_FORMS, "Copy Style", True)
     Call AddButtom(0, "UPPER CASE", "UperTextInControl", modAddinConst.MENU_FORMS, "UPPER CASE", True, False)
@@ -91,7 +91,7 @@ End Sub
 
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : AddNewCommandBarMenu - создание главного меню в редакторе VBE
+'* Sub        : AddNewCommandBarMenu - Creates a new menu in the VBE environment
 '* Created    : 22-03-2023 14:28
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -116,7 +116,7 @@ AddNewCommandBar:
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : DeleteContextMenus - удаление всех дочерних контролов в меню, редактора кода VBE
+'* Sub        : DeleteContextMenus - Removes all added menus from the VBE environment
 '* Created    : 22-03-2023 14:32
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -138,9 +138,9 @@ Public Sub DeleteContextMenus()
     Call DeleteButton("toLowerCase", modAddinConst.MENU_CODE_WINDOW)
     Call DeleteButton("InsertCode", modAddinConst.MENU_CODE_WINDOW)
 
-    Call DeleteButton("Aling Horiz", modAddinConst.MENU_FORMS)
-    Call DeleteButton("Aling Vert", modAddinConst.MENU_FORMS)
-    Call DeleteButton("ReName Control", modAddinConst.MENU_FORMS)
+    Call DeleteButton("Align Horiz", modAddinConst.MENU_FORMS)
+    Call DeleteButton("Align Vert", modAddinConst.MENU_FORMS)
+    Call DeleteButton("Rename Control", modAddinConst.MENU_FORMS)
     Call DeleteButton("Paste Style", modAddinConst.MENU_FORMS)
     Call DeleteButton("Copy Style", modAddinConst.MENU_FORMS)
     Call DeleteButton("UPPER CASE", modAddinConst.MENU_FORMS)
@@ -157,7 +157,7 @@ Public Sub DeleteContextMenus()
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : AddButtom - создание кнопки в редакторе кода VBE
+'* Sub        : AddButtom - Adds a button to the VBE environment
 '* Created    : 22-03-2023 14:29
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -202,7 +202,7 @@ Private Sub AddButtom(ByVal Face As Long, _
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : DeleteButton - удаление кнопки в редакторе кода VBE
+'* Sub        : DeleteButton - Removes a button from the VBE environment
 '* Created    : 22-03-2023 14:33
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -227,14 +227,14 @@ Private Sub DeleteButton(ByVal sTag As String, ByVal sMenu As String)
     Next Ctrl
     Exit Sub
 ErrorHandler:
-    Debug.Print "Ошибка! в DeleteButton" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+    Debug.Print "Error in DeleteButton" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
     'Call WriteErrorLog("DeleteButton")
     Err.Clear
     Resume Next
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : AddComboBox - создание ComboBox в редакторе VBE, для работы с модулями
+'* Sub        : AddComboBox - Adds a ComboBox to the VBE environment for selection purposes
 '* Created    : 22-03-2023 14:29
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -255,4 +255,3 @@ Private Sub AddComboBox(ByVal sNameCommandBar As String, ByVal sTag As String, B
         .Text = sText
     End With
 End Sub
-

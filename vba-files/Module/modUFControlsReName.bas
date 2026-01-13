@@ -5,8 +5,10 @@ Option Compare Text
 Option Base 1
 
 
+
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : RenameControl - переименование конторол на форме вместе скодом
+'* Sub        : RenameControl - Renames the selected control
 '* Created    : 08-10-2020 14:11
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -23,7 +25,7 @@ Private Sub RenameControl()
     Set cnt = GetSelectControl()
     If cnt Is Nothing Then Exit Sub
     sOldName = cnt.Name
-    sNewName = InputBox("Ведите новое название Control", "Переименование Control:", sOldName)
+    sNewName = InputBox("Enter new Control name", "Rename Control:", sOldName)
     If sNewName = vbNullString Or sNewName = sOldName Then Exit Sub
 
     cnt.Name = sNewName
@@ -36,28 +38,28 @@ Private Sub RenameControl()
 ErrorHandler:
     Select Case Err.Number
         Case 40044:
-            Call MsgBox("Ошибка! Ведено не допустимое имя Control [ " & sNewName & " ], задайте дргое имя!", vbCritical, "Ведено не допустимое имя Control:")
+            Call MsgBox("Error! Cannot rename Control [ " & sNewName & " ], name already exists!", vbCritical, "Cannot rename Control:")
             Exit Sub
         Case -2147319764:
-            Call MsgBox("Данное Имя Control уже используется [" & sNewName & " ], задайте дргое имя!", vbCritical, "Имя задано неоднозначно:")
+            Call MsgBox("Control name already exists [" & sNewName & " ], name already exists!", vbCritical, "Name already exists:")
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в RenameControl" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in RenameControl" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("RenameControl")
     End Select
     Err.Clear
 End Sub
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Function   : ReplceCode - функция поиска в коде названий и замена их на новое
+'* Function   : ReplceCode - Replaces old control name with new name in code
 '* Created    : 26-03-2020 13:11
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):             Description
 '*
-'* ByVal sInCode As String : код модуля
-'* sOldName As String      : старое имя
-'* sNewName As String      : новое имя
+'* ByVal sInCode As String : Input code
+'* sOldName As String      : Old name
+'* sNewName As String      : New name
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Function ReplceCode(ByVal sInCode As String, sOldName As String, sNewName As String) As String

@@ -1,4 +1,4 @@
-VERSION 5.00
+VERSION 5.0
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmOptionsModule 
    Caption         =   "OPTION:"
    ClientHeight    =   5190
@@ -18,11 +18,12 @@ Option Explicit
 Option Compare Text
 Option Base 1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : addOptions - создание OPTIONs в модулях проекта
+'* Module     : addOptions - Adds OPTIONs to module headers
 '* Created    : 17-09-2020 14:06
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 
 
 Private Sub chAll_Change()
@@ -40,57 +41,54 @@ End Sub
 
 Private Sub lbBase_Click()
     Dim sTxt        As String
-    sTxt = "Используется на уровне модуля для объявления нижней границы массивов, по умолчанию." & vbNewLine & vbNewLine
-    sTxt = sTxt & "Синтаксис" & vbNewLine & "Option Base { 0 | 1 }" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Поскольку Option Base по умолчанию равна 0, оператор Option Base никогда не используется. Оператор должен находиться в модуле до всех процедур." & vbNewLine
-    sTxt = sTxt & "Оператор Option Base может указываться в модуле только один раз и должен предшествовать объявлениям массивов, включающим размерности." & vbNewLine & vbNewLine
-    sTxt = sTxt & "Примечание" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Предложение To в инструкциях Dim, Private, Public, ReDim и Static предоставляет более гибкий способ управления диапазоном индексов массива." & vbNewLine
-    sTxt = sTxt & "Однако если нижняя граница индексов не задается явно в предложении To, можно воспользоваться инструкцией Option Base," & vbNewLine
-    sTxt = sTxt & "чтобы установить используемую по умолчанию нижнюю границу индексов, равную 1. Нижняя граница значений индексов массивов," & vbNewLine
-    sTxt = sTxt & "создаваемых с помощью функции Array, всегда равняется нулю; вне зависимости от инструкции Option Base."
-    sTxt = sTxt & vbNewLine & vbNewLine & "Инструкция Option Base действует на нижнюю границу индексов массивов только того модуля, в котором расположена сама эта инструкция."
+    sTxt = "Sets the default lower bound for array subscripts. The default lower bound is 0." & vbNewLine & vbNewLine
+    sTxt = sTxt & "Syntax" & vbNewLine & "Option Base { 0 | 1 }" & vbNewLine & vbNewLine
+    sTxt = sTxt & "When Option Base appears in a file, it must precede any procedure-level declarations. If Option Base is not specified, the default lower bound is 0." & vbNewLine
+    sTxt = sTxt & "Option Base statement must appear in the declarations section of a module before any procedures." & vbNewLine & vbNewLine
+    sTxt = sTxt & "Remarks" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Used with To keyword in Dim, Private, Public, ReDim, and Static statements to declare array subscript ranges." & vbNewLine
+    sTxt = sTxt & "If you don't specify a lower bound for an array, the lower bound is determined by the setting of Option Base," & vbNewLine
+    sTxt = sTxt & "or by the default lower bound, which is 0. When calling functions that return arrays, such as Array, the lower bound" & vbNewLine
+    sTxt = sTxt & "depends on the setting of Option Base unless the call to Array is preceded by LBound or UBound." & vbNewLine
+    sTxt = sTxt & "Note that Option Base affects only arrays whose lower bound isn't explicitly stated in the Dim, Private, Public, ReDim, or Static statement that declares them."
     Debug.Print sTxt
 End Sub
 Private Sub lbCompare_Click()
     Dim sTxt        As String
-    sTxt = "Используется на уровне модуля для объявления метода сравнения по умолчанию, который будет использоваться при сравнении строковых данных." & vbNewLine & vbNewLine
-    sTxt = sTxt & "Синтаксис" & vbNewLine & "Option Compare { Binary | Text | Database }" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Примечание" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Инструкция Option Compare при ее использовании должна находиться в модуле перед любой процедурой." & vbNewLine
-    sTxt = sTxt & "Инструкция Option Compare указывает способ сравнения строк (Binary, Text или Database) для модуля." & vbNewLine
-    sTxt = sTxt & "Если модуль не содержит инструкцию Option Compare, по умолчанию используется способ сравнения Binary." & vbNewLine
-    sTxt = sTxt & "Инструкция Option Compare Binary задает сравнение строк на основе порядка сортировки, определяемого внутренним двоичным представлением символов." & vbNewLine
-    sTxt = sTxt & "В Microsoft Windows порядок сортировки определяется кодовой страницей символов." & vbNewLine
-    sTxt = sTxt & "В следующем примере представлен типичный результат двоичного порядка сортировки:" & vbNewLine & vbNewLine
-    sTxt = sTxt & "A < B < E < Z < a < b < e < z < Б < Л < Ш < б < л < ш" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Инструкция Option Compare Text задает сравнение строк без учета регистра символов на основе системной национальной настройки." & vbNewLine
-    sTxt = sTxt & "Тем же символам, что и выше, при сортировке с инструкцией Option Compare Text соответствует следующий порядок: " & vbNewLine & vbNewLine
-    sTxt = sTxt & "(A=a) < (B=b) < (E=e) < (Z=z) < (Б=б) < (Л=л) < (Ш=ш)" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Инструкция Option Compare Database может использоваться только в Microsoft Access. При этом задает сравнение строк на основе порядка сортировки," & vbNewLine
-    sTxt = sTxt & "определяемого национальной настройкой базы данных, в которой производится сравнение строк. "
+    sTxt = "Sets the default method for comparing string data. The default method is binary." & vbNewLine & vbNewLine
+    sTxt = sTxt & "Syntax" & vbNewLine & "Option Compare { Binary | Text | Database }" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Remarks" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Used when performing string comparisons. The compare setting affects all string comparison functions." & vbNewLine
+    sTxt = sTxt & "Option Compare statement must appear in the declarations section of a module before any procedures." & vbNewLine
+    sTxt = sTxt & "If no compare method is specified, the default is Binary. Option Compare Binary performs comparisons based on the internal binary representations of the characters." & vbNewLine
+    sTxt = sTxt & "In Microsoft Windows, sorting is generally based on the internal binary representations of the characters." & vbNewLine
+    sTxt = sTxt & "In this case, the following characters are sorted in ascending order:" & vbNewLine
+    sTxt = sTxt & "A < B < E < Z < a < b < e < z < Рђ < Р‘ < Р’ < Р“ < Р” < Р•" & vbNewLine
+    sTxt = sTxt & "Option Compare Text performs comparisons based on a case-insensitive alphabetical comparison. " & vbNewLine
+    sTxt = sTxt & "Thus, the following characters are sorted in ascending order: " & vbNewLine & vbNewLine
+    sTxt = sTxt & "(A=a) < (B=b) < (E=e) < (Z=z) < (Рђ=Р°) < (Р‘=Р±) < (Р’=РІ)" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Option Compare Database can only be used with Microsoft Access. When used, string comparisons are performed based on the sort order" & vbNewLine
+    sTxt = sTxt & "of the database, which may differ from the default sort order. "
     Debug.Print sTxt
 End Sub
 Private Sub lbExplicit_Click()
     Dim sTxt        As String
-    sTxt = "Используется на уровне модуля для принудительного явного объявления всех переменных в этом модуле." & vbNewLine & vbNewLine
-    sTxt = sTxt & "Синтаксис" & vbNewLine & "Option Explicit" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Примечание" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Инструкция Option Explicit при ее использовании должна находиться в модуле до любой процедуры." & vbNewLine
-    sTxt = sTxt & "При использовании инструкции Option Explicit необходимо явно описать все переменные с помощью инструкций Dim, Private, Public, ReDim или Static." & vbNewLine
-    sTxt = sTxt & "При попытке использовать неописанное имя переменной возникает ошибка во время компиляции." & vbNewLine
-    sTxt = sTxt & "Когда инструкция Option Explicit не используется, все неописанные переменные имеют тип Variant, если используемый по умолчанию тип данных не задается с помощью инструкции DefТип." & vbNewLine
-    sTxt = sTxt & "Используйте инструкцию Option Explicit, чтобы избежать неверного ввода имени имеющейся переменной или риска конфликтов в программе, когда область определения переменной не совсем ясна."
+    sTxt = "Forces explicit declaration of all variables in a file." & vbNewLine & vbNewLine
+    sTxt = sTxt & "Syntax" & vbNewLine & "Option Explicit" & vbNewLine
+    sTxt = sTxt & "Remarks" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Used to force explicit declaration of all variables in a module. When Option Explicit is used, all variables must be explicitly declared using Dim, Private, Public, ReDim or Static statements." & vbNewLine
+    sTxt = sTxt & "If Option Explicit is not specified, variables are automatically declared as Variant type, which can lead to unexpected behavior when variable names are misspelled." & vbNewLine
+    sTxt = sTxt & "Using Option Explicit helps catch typos and undeclared variables during compilation, which can prevent runtime errors and improve code reliability."
     Debug.Print sTxt
 End Sub
 Private Sub lbPrivate_Click()
     Dim sTxt        As String
-    sTxt = "Используется на уровне модуля для запрета ссылок на контент модуля извне проекта." & vbNewLine & vbNewLine
-    sTxt = sTxt & "Синтаксис" & vbNewLine & "Option Private Module" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Примечание" & vbNewLine & vbNewLine
-    sTxt = sTxt & "Когда модуль содержит инструкцию Option Private Module, общие элементы, например, переменные, объекты и определяемые пользователем типы, описанные на уровне модуля," & vbNewLine
-    sTxt = sTxt & "остаются доступными внутри проекта, содержащего этот модуль, но недоступными для других приложений или проектов." & vbNewLine
-    sTxt = sTxt & "Microsoft Excel поддерживает загрузку нескольких проектов. В этом случае инструкция Option Private Module позволяет ограничить взаимную видимость проектов."
+    sTxt = "Makes all procedures and variables declared in a module private by default." & vbNewLine & vbNewLine
+    sTxt = sTxt & "Syntax" & vbNewLine & "Option Private Module" & vbNewLine & vbNewLine
+    sTxt = sTxt & "Remarks" & vbNewLine & vbNewLine
+    sTxt = sTxt & "When Option Private Module is present, all procedures, variables, constants, properties, and events declared in the module are private by default," & vbNewLine
+    sTxt = sTxt & "unless explicitly declared as Public, Friend, or Global. This prevents unintended exposure of internal module members." & vbNewLine
+    sTxt = sTxt & "Microsoft Excel does not support this option. When Option Private Module is used, it makes the module behave as if it had private visibility by default."
     Debug.Print sTxt
 End Sub
 
@@ -124,12 +122,12 @@ ErrorHandler:
     Select Case Err.Number
         Case 91:
             Unload Me
-            Debug.Print "Нет активного модуля, перейдите в модуль кода!"
+            Debug.Print "An error occurred, please check the form!"
             Exit Sub
         Case 76:
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в addOptions" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in addOptions" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("addOptions")
     End Select
     Err.Clear

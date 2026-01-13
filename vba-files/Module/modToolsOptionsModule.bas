@@ -4,15 +4,16 @@ Option Private Module
 Option Compare Text
 Option Base 1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : Y_Options - модуль создание Options
+'* Module     : Y_Options - Module for handling Options
 '* Created    : 17-09-2020 14:35
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : subOptions - запуск формы вставки Option в модули VBA
+'* Sub        : subOptions - Shows the Options form in VBA editor
 '* Created    : 23-03-2023 10:10
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -66,13 +67,14 @@ ErrorHandler:
         Case 91:
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в addOptions" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in addOptions" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("addOptions")
     End Select
     Err.Clear
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : insertOptionsExplicitAndPrivateModule - быстрое создание только опций Explicit и Private Module
+'* Sub        : insertOptionsExplicitAndPrivateModule - Inserts Option Explicit and Private Module statements
 '* Created    : 23-06-2022 11:20
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -97,20 +99,21 @@ ErrorHandler:
         Case 91:
             Exit Sub
         Case Else:
-            Debug.Print "Ошибка! в insertOptionsExplicitAndPrivateModule" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+            Debug.Print "Error in insertOptionsExplicitAndPrivateModule" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "at line " & Erl
             'Call WriteErrorLog("insertOptionsExplicitAndPrivateModule")
     End Select
     Err.Clear
 End Sub
+
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Sub        : addString - вставка строк Option в модуль VBA
+'* Sub        : addString - Adds Option statements to VBA modules
 '* Created    : 23-03-2023 10:10
 '* Author     : VBATools
 '* Copyright  : Apache License
 '* Argument(s):                 Description
 '*
-'* ByRef moCM As CodeModule : модуль VBA
-'* ByVal sOptions As String : строки Option утановленые в модуле
+'* ByRef moCM As CodeModule : VBA Module
+'* ByVal sOptions As String : Option statements to insert
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Sub addString(ByRef moCM As CodeModule, ByVal sOptions As String)

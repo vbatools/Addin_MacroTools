@@ -5,6 +5,13 @@ Option Compare Text
 Option Base 1
 
 
+
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Sub        : SwapEgual - Swaps the sides of an assignment operator (=) in selected code
+'* Created    : 22-03-2023 14:25
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Sub SwapEgual()
     Dim newText     As String
     Dim lineText    As String
@@ -36,6 +43,16 @@ Public Sub SwapEgual()
     Call Application.VBE.ActiveCodePane.SetSelection(sL, sC, eL, eC)
 End Sub
 
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Function   : SwapEgualText - Swaps the sides of an assignment operator (=) in a text string
+'* Created    : 22-03-2023 14:25
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* Argument(s):             Description
+'*
+'* ByVal sText As String : Input text to process
+'*
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Function SwapEgualText(ByVal sText As String) As String
     Dim arrStr      As Variant
     Dim i           As Integer

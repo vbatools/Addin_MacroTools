@@ -1,6 +1,6 @@
-VERSION 5.00
+VERSION 5.0
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSettingsIndent 
-   Caption         =   "Настройки:"
+   Caption         =   "Formatting:"
    ClientHeight    =   8550.001
    ClientLeft      =   45
    ClientTop       =   375
@@ -18,7 +18,7 @@ Option Explicit
 Option Compare Text
 Option Base 1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : OptionsCodeFormat - настройка форматирования кода, растановка отступов
+'* Module     : OptionsCodeFormat - Settings for code formatting, indentation options
 '* Created    : 15-09-2019 15:57
 '* Author     : VBATools
 '* Copyright  : Apache License
@@ -169,8 +169,8 @@ Private Sub UpdateCodeListBox()
     asCodeLines(1) = "' Example Procedure"
     asCodeLines(2) = "Sub ExampleProc()"
     asCodeLines(3) = ""
-    asCodeLines(4) = "'надстройка " & modAddinConst.NAME_ADDIN
-    asCodeLines(5) = "'© 2018-" & VBA.Year(Now()) & " by " & modAddinConst.NAME_ADDIN & " Ltd."
+    asCodeLines(4) = "'Copyright " & modAddinConst.NAME_ADDIN
+    asCodeLines(5) = "'В© 2018-" & VBA.Year(Now()) & " by " & modAddinConst.NAME_ADDIN & " Ltd."
     asCodeLines(6) = ""
     asCodeLines(7) = "Dim iCount As Integer"
     asCodeLines(8) = "Static sName As String"

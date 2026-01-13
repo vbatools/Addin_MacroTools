@@ -37,12 +37,12 @@ End Sub
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Private Sub findeReplaceWordInCodeVBPrj(ByVal sFinde As String, ByVal sReplace As String)
-    Dim vbComp As VBIDE.VBComponent
+    Dim vbComp      As VBIDE.VBComponent
     On Error GoTo ErrorHandler
     Select Case WhatIsTextInComboBoxHave(modAddinConst.MENU_TOOLS)
         Case modAddinConst.TYPE_ALL_VBAPROJECT:
             For Each vbComp In Application.VBE.ActiveVBProject.VBComponents
-               Call findeReplaceWordInCode(vbComp.CodeModule, sFinde, sReplace)
+                Call findeReplaceWordInCode(vbComp.CodeModule, sFinde, sReplace)
             Next vbComp
         Case modAddinConst.TYPE_SELECTED_MODULE:
             Call findeReplaceWordInCode(Application.VBE.ActiveCodePane.CodeModule, sFinde, sReplace)

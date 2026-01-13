@@ -10,12 +10,12 @@ Option Base 1
 '* Copyright  : Apache License
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Enum vbLineNumbers_LabelTypes
-vbLabelColon    ' 0
-vbLabelTab    ' 1
+    vbLabelColon    ' 0
+    vbLabelTab    ' 1
 End Enum
 Private Enum vbLineNumbers_ScopeToAddLineNumbersTo
-vbScopeAllProc    ' 1
-vbScopeThisProc    ' 2
+    vbScopeAllProc    ' 1
+    vbScopeThisProc    ' 2
 End Enum
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 '* Sub        : AddLineNumbers_ - добавление номеров строк кода в модуле VBA

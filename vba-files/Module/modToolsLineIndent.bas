@@ -51,12 +51,12 @@ Option Base 1
 '***************************************************************************
 'UDT to store Undo information
 Public Type uUndo
-oMod            As CodeModule
-sName           As String
-lStartLine      As Long
-lEndLine        As Long
-asOriginal()    As String
-asIndented()    As String
+    oMod            As CodeModule
+    sName           As String
+    lStartLine      As Long
+    lEndLine        As Long
+    asOriginal()    As String
+    asIndented()    As String
 End Type
 Public pauUndo()    As uUndo
 Const miTAB         As Integer = 9

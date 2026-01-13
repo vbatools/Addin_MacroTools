@@ -121,7 +121,7 @@ Private Sub addString(ByRef moCM As CodeModule, ByVal sOptions As String)
         If i > 0 Then
             sLines = .Lines(1, i)
             Call .DeleteLines(1, i)
-    
+
             sLines = VBA.Replace(sLines, "Option Explicit", vbNullString)
             sLines = VBA.Replace(sLines, "Option Private Module", vbNullString)
             sLines = VBA.Replace(sLines, "Option Base 1", vbNullString)

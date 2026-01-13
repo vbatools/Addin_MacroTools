@@ -146,7 +146,7 @@ End Function
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Sub TrimLinesTabAndSpase(ByRef CurCodeModule As VBIDE.CodeModule)
-    Dim sLines     As String
+    Dim sLines      As String
 
     sLines = GetCodeFromModule(CurCodeModule)
     If sLines = vbNullString Then Exit Sub

@@ -5,23 +5,23 @@ Option Compare Text
 Option Base 1
 Public tpStyle      As ProperControlStyle
 Type ProperControlStyle
-sError          As String
-snHeight        As Single
-snWidth         As Single
-bVisible        As Boolean
-bEnabled        As Boolean
-bLocked         As Boolean
-lBackColor      As Long
-lForeColor      As Long
-lBackStyle      As Long
-lBorderColor    As Long
-lBorderStyle    As Long
-bFontBold       As Boolean
-bFontItalic     As Boolean
-bFontStrikethru As Boolean
-bFontUnderline  As Boolean
-sFontName       As String
-cuFontSize      As Currency
+    sError          As String
+    snHeight        As Single
+    snWidth         As Single
+    bVisible        As Boolean
+    bEnabled        As Boolean
+    bLocked         As Boolean
+    lBackColor      As Long
+    lForeColor      As Long
+    lBackStyle      As Long
+    lBorderColor    As Long
+    lBorderStyle    As Long
+    bFontBold       As Boolean
+    bFontItalic     As Boolean
+    bFontStrikethru As Boolean
+    bFontUnderline  As Boolean
+    sFontName       As String
+    cuFontSize      As Currency
 End Type
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

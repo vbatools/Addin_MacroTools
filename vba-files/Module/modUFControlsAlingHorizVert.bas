@@ -29,7 +29,7 @@ Public Sub vbaCntAlingHoriz()
 
     lColCnt = Application.InputBox("Введите количество строк", "Выровнять по горизонтальной сетке:", Type:=1)
     If lColCnt <= 0 Or lColCnt = False Then Exit Sub
- 
+
     dSPACE = Application.InputBox("Введите расстояние между фигурами", "Выровнять по горизонтальной сетке:", Type:=1)
     If TypeName(dSPACE) = "Boolean" Then Exit Sub
 

@@ -16,7 +16,7 @@ Private Sub RenameControl()
     Dim sNewName    As String
     Dim sOldName    As String
     Dim strVar      As String
-    Dim moCM     As CodeModule
+    Dim moCM        As CodeModule
 
     On Error GoTo ErrorHandler
 

@@ -1,0 +1,50 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "clsVBECommandHandler"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+Option Explicit
+
+Option Compare Text
+Option Base 1
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Module     : VBECommandHandler - обратные вызовы для меню VBE
+'* Created    : 01-20-2020 15:55
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Public WithEvents EvtHandler As CommandBarButton
+Attribute EvtHandler.VB_VarHelpID = -1
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Module     : VBECommandHandler - обратные вызовы для меню VBE
+'* Created    : 01-20-2020 15:55
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+'* Sub        : EvtHandler_Click - класс создания события клика по кнопке, для панели инструментов VBE
+'* Created    : 23-03-2023 10:28
+'* Author     : VBATools
+'* Copyright  : Apache License
+'* Argument(s):                     Description
+'*
+'* ByVal Ctrl As CommandBarButton :
+'* CancelDefault As Boolean       :
+'*
+'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Private Sub EvtHandler_Click(ByVal Ctrl As CommandBarButton, CancelDefault As Boolean)
+    On Error GoTo ErrorHandler
+    Call Application.Run(Ctrl.OnAction)
+    Exit Sub
+ErrorHandler:
+    If Err.Number <> 0 Then
+        Debug.Print "Ошибка! в EvtHandler_Click" & vbLf & Err.Number & vbLf & Err.Description & vbCrLf & "в строке " & Erl
+        'Call WriteErrorLog("EvtHandler_Click")
+        Err.Clear
+    End If
+End Sub

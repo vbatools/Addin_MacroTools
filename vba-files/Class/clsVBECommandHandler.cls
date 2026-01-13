@@ -18,13 +18,6 @@ Option Explicit
 Public WithEvents EvtHandler As CommandBarButton
 Attribute EvtHandler.VB_VarHelpID = -1
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-'* Module     : VBECommandHandler - Handles events for buttons in VBE
-'* Created    : 01-20-2020 15:55
-'* Author     : VBATools
-'* Copyright  : Apache License
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-'* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 '* Sub        : EvtHandler_Click - Event handler for button clicks in the VBE environment
 '* Created    : 23-03-2023 10:28
 '* Author     : VBATools

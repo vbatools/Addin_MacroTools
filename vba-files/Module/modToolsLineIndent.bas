@@ -555,7 +555,7 @@ Public Sub RebuildCodeArray( _
                             iIndents = 0
                         End If
                 End Select
-            PTR_NEXT_PART:
+PTR_NEXT_PART:
             Loop Until iScan > Len(sLine)    'Part of the line
             'Do we have some code left to check?
             '(i.e. a line without a comment or the last segment of a multi-statement line)
@@ -602,7 +602,7 @@ Public Sub RebuildCodeArray( _
             End If
             mbContinued = (Right$(Trim$(sLine), 2) = " _")
         End If    'Anything there?
-    PTR_REPLACE_LINE:
+PTR_REPLACE_LINE:
         'Add the code line number back in
         If iCodeLineNum > -1 Then
             sCodeLineNum = CStr(iCodeLineNum)

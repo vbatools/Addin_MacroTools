@@ -130,6 +130,7 @@ Addin_MacroTools_2.0/
 | `Alt+F11` | Открыть VBE |
 
 > Полный список горячих клавиш доступен через меню **Tools → Hotkeys**
+[Репозиторий Hotkeys](https://github.com/vbatools/MacroToolsVBAHotKeys)
 
 ---
 

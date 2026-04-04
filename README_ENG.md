@@ -9,7 +9,7 @@
 > **License:** Apache License \
 
 > [!IMPORTANT]
-> **Password for the VBA project** 1
+> **Password for the VBA project** $${\color{red}1}$$
 
 ---
 

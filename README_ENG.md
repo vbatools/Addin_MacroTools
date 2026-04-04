@@ -7,6 +7,8 @@
 > **Author:** VBATools \
 > **Version:** 2.0.38 \
 > **License:** Apache License \
+
+> [!IMPORTANT]
 > **Password for the VBA project** 1
 
 ---

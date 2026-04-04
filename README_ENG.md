@@ -3,11 +3,11 @@
 
 # MACROTools v2.0
 
-> **Powerful Excel VBA Add-in for Developers**
-> **Author:** VBATools
-> **Version:** 2.0.38
-> **License:** Apache License
-> **Password for the VBA project** 1
+> **Powerful Excel VBA Add-in for Developers** \
+> **Author:** VBATools \
+> **Version:** 2.0.38 \
+> **License:** Apache License \
+> **Password for the VBA project** 1 \
 
 ---
 
@@ -129,7 +129,7 @@ Addin_MacroTools_2.0/
 | `Ctrl+Shift+H` | Hotkeys reference |
 | `Alt+F11` | Open VBE |
 
-> Full list of hotkeys available via **Tools → Hotkeys** menu
+> Full list of hotkeys available via **Tools → Hotkeys** menu \
 [The Repository Hotkeys](https://github.com/vbatools/MacroToolsVBAHotKeys)
 
 ---

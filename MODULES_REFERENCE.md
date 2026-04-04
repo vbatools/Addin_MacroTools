@@ -1,3 +1,6 @@
+**Русский** | [English](MODULES_REFERENCE_ENG.md)
+---
+
 # MACROTools v2.0 — Полный справочник модулей
 
 > **Название:** MACROTools  

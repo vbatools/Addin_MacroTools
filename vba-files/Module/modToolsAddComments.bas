@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsAddComments"
+Attribute VB_Name = "modToolsAddComments"
 Option Explicit
 Option Private Module
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

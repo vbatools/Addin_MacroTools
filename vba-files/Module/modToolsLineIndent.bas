@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsLineIndent"
+Attribute VB_Name = "modToolsLineIndent"
 Option Explicit
 Option Private Module
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

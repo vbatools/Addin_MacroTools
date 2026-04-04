@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modUFControlsStyleCopyPaste"
+Attribute VB_Name = "modUFControlsStyleCopyPaste"
 Option Explicit
 Option Private Module
 

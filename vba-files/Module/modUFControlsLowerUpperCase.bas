@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modUFControlsLowerUpperCase"
+Attribute VB_Name = "modUFControlsLowerUpperCase"
 Option Explicit
 Option Private Module
 

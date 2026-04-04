@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsUnUsedVar"
+Attribute VB_Name = "modToolsUnUsedVar"
 Option Explicit
 Option Private Module
 

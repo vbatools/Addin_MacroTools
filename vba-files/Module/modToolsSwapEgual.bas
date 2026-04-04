@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsSwapEgual"
+Attribute VB_Name = "modToolsSwapEgual"
 Option Explicit
 Option Private Module
 

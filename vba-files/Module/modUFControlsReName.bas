@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modUFControlsReName"
+Attribute VB_Name = "modUFControlsReName"
 Option Explicit
 Option Private Module
 

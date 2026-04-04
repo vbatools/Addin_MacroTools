@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDimOneLine"
+Attribute VB_Name = "modToolsDimOneLine"
 Option Explicit
 Option Private Module
 

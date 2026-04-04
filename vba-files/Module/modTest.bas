@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modTest"
+Attribute VB_Name = "modTest"
 Option Explicit
 
 Public Sub test()

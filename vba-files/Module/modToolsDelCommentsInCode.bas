@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDelCommentsInCode"
+Attribute VB_Name = "modToolsDelCommentsInCode"
 Option Explicit
 Option Private Module
 

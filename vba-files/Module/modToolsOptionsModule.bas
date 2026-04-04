@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsOptionsModule"
+Attribute VB_Name = "modToolsOptionsModule"
 Option Explicit
 Option Private Module
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

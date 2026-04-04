@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsStatCode"
+Attribute VB_Name = "modToolsStatCode"
 Option Explicit
 Option Private Module
 

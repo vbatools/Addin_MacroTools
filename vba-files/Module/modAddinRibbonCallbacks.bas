@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modAddinRibbonCallbacks"
+Attribute VB_Name = "modAddinRibbonCallbacks"
 Option Explicit
 Option Private Module
 

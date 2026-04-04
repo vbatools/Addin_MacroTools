@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modAddinConst"
+Attribute VB_Name = "modAddinConst"
 Option Explicit
 Option Private Module
 ' __      ______       _______         ,_

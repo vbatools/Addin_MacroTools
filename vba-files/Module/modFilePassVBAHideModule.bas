@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFilePassVBAHideModule"
+Attribute VB_Name = "modFilePassVBAHideModule"
 Option Explicit
 Option Private Module
 Const DELIMETR      As String = "||"

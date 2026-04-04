@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFilePassVBAUnviewableDel"
+Attribute VB_Name = "modFilePassVBAUnviewableDel"
 Option Explicit
 Option Private Module
 

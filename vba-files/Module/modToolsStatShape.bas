@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsStatShape"
+Attribute VB_Name = "modToolsStatShape"
 Option Explicit
 Option Private Module
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modAddinThemeVBE"
+Attribute VB_Name = "modAddinThemeVBE"
 Option Explicit
 Option Private Module
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

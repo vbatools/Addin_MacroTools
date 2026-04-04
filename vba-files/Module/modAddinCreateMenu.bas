@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modAddinCreateMenu"
+Attribute VB_Name = "modAddinCreateMenu"
 Option Explicit
 Option Private Module
 Private ToolContextEventHandlers As Collection

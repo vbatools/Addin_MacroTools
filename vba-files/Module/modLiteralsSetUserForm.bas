@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modLiteralsSetUserForm"
+Attribute VB_Name = "modLiteralsSetUserForm"
 Option Explicit
 Option Private Module
 

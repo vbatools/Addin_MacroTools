@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDebugOnOff"
+Attribute VB_Name = "modToolsDebugOnOff"
 Option Explicit
 Option Private Module
 

@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFileProperty"
+Attribute VB_Name = "modFileProperty"
 Option Explicit
 Option Private Module
 

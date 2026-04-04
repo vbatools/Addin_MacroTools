@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDelTwoEmptyStrings"
+Attribute VB_Name = "modToolsDelTwoEmptyStrings"
 Option Explicit
 Option Private Module
 

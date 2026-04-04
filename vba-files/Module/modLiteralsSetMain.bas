@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modLiteralsSetMain"
+Attribute VB_Name = "modLiteralsSetMain"
 Option Explicit
 Option Private Module
 

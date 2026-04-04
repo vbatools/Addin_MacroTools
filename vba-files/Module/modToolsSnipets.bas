@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsSnipets"
+Attribute VB_Name = "modToolsSnipets"
 Option Explicit
 Option Private Module
 

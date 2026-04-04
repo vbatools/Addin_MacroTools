@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modLiteralsGetUI"
+Attribute VB_Name = "modLiteralsGetUI"
 Option Explicit
 Option Private Module
 

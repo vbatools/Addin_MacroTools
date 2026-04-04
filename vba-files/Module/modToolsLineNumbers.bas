@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsLineNumbers"
+Attribute VB_Name = "modToolsLineNumbers"
 Option Explicit
 Option Private Module
 

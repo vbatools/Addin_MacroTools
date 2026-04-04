@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDelBreaksLine"
+Attribute VB_Name = "modToolsDelBreaksLine"
 Option Explicit
 Option Private Module
 

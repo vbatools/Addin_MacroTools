@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modUFControlsAlingHorizVert"
+Attribute VB_Name = "modUFControlsAlingHorizVert"
 Option Explicit
 Option Private Module
 

@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsObfuscation"
+Attribute VB_Name = "modToolsObfuscation"
 Option Explicit
 Option Private Module
 

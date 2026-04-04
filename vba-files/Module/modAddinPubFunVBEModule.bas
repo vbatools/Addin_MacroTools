@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modAddinPubFunVBEModule"
+Attribute VB_Name = "modAddinPubFunVBEModule"
 Option Explicit
 Option Private Module
 

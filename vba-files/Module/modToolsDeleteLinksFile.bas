@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsDeleteLinksFile"
+Attribute VB_Name = "modToolsDeleteLinksFile"
 Option Explicit
 Option Private Module
 

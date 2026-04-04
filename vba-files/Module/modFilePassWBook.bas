@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFilePassWBook"
+Attribute VB_Name = "modFilePassWBook"
 Option Explicit
 Option Private Module
 

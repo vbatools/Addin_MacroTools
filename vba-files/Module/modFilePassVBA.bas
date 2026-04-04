@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFilePassVBA"
+Attribute VB_Name = "modFilePassVBA"
 Option Explicit
 Option Private Module
 #If VBA7 Then

@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modUFControlsMove"
+Attribute VB_Name = "modUFControlsMove"
 Option Explicit
 Option Private Module
 

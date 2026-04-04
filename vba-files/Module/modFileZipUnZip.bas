@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFileZipUnZip"
+Attribute VB_Name = "modFileZipUnZip"
 Option Explicit
 Option Private Module
 

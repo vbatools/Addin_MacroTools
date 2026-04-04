@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modFilePassVBAUnviewableSet"
+Attribute VB_Name = "modFilePassVBAUnviewableSet"
 Option Explicit
 Option Private Module
 Const HOST_INFO     As String = "[Host Extender Info]"

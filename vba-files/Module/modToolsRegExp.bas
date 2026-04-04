@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "modToolsRegExp"
+Attribute VB_Name = "modToolsRegExp"
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 '* Module     : modRegExp - regular expression testing
 '* Created    : 22-04-2020 23:02

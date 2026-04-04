@@ -117,7 +117,7 @@ Addin_MacroTools_2.0/
 
 ## 📖 Documentation
 
-- **[MODULES_REFERENCE.md](MODULES_REFERENCE_ENG.md)** — Complete reference of all modules with procedure descriptions
+- **[MODULES_REFERENCE.md](docs/MODULES_REFERENCE_ENG.md)** — Complete reference of all modules with procedure descriptions
 
 ---
 

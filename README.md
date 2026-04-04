@@ -117,7 +117,7 @@ Addin_MacroTools_2.0/
 
 ## 📖 Документация
 
-- **[MODULES_REFERENCE.md](MODULES_REFERENCE.md)** — Полный справочник всех модулей с описанием процедур
+- **[MODULES_REFERENCE.md](docs/MODULES_REFERENCE.md)** — Полный справочник всех модулей с описанием процедур
 
 ---
 

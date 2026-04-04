@@ -7,7 +7,7 @@
 > **Автор:** VBATools  
 > **Версия:** 2.0.38  
 > **Лицензия:** Apache License \
-> [!CAUTION]
+> [!CAUTION] \
 > **Пароль от VBA проекта** $${\color{red}1}$$
 
 ---

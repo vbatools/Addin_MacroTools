@@ -82,12 +82,29 @@
 
 ```
 Addin_MacroTools_2.0/
-├── vba-files/              # Исходный код VBA
-│   ├── Class/              # Класс-модули (.cls)
-│   ├── Form/               # UserForm (.frm)
-│   └── Module/             # Стандартные модули (.bas)
-├── Addin_MacroTools_v2.0.38_ENG.xlsb  # Скомпилированный аддин
-└── MODULES_REFERENCE.md    # Полный справочник модулей
+├── vba-files/                            # Исходный код VBA
+│   ├── Class/                            # Класс-модули (7 файлов)
+│   │   ├── clsAnchors.cls                # Якоря для UserForm
+│   │   ├── clsLogging.cls                # Логирование в CSV
+│   │   ├── clsObfuscator.cls             # Обфускация VBA-кода
+│   │   ├── clsOfficeArchiveManager.cls   # Менеджер архивов Office
+│   │   ├── clsSort2DArray.cls            # Сортировка двумерных массивов
+│   │   ├── clsToolsVBACodeStatistics.cls # Статистика VBA-кода
+│   │   └── clsVBECommandHandler.cls      # Обработчик команд VBE
+│   ├── Form/                             # UserForm (диалоговые окна)
+│   └── Module/                           # Стандартные модули (47 файлов)
+│       ├── modAddin*.bas                 # Ядро аддина (константы, меню, Ribbon, темы)
+│       ├── modFile*.bas                  # Работа с файлами (пароли, архивы, свойства)
+│       ├── modLiterals*.bas              # Парсинг и замена строковых литералов
+│       ├── modTools*.bas                 # Инструменты работы с кодом VBA
+│       └── modUFControls*.bas            # Управление контролами UserForm
+├── docs/                                 # Документация
+│   ├── MODULES_REFERENCE.md              # Справочник модулей (RU)
+│   └── MODULES_REFERENCE_ENG.md          # Справочник модулей (EN)
+├── Addin_MacroTools_v2.0.38_ENG.xlsb     # Скомпилированный аддин
+├── README.md                             # Документация (RU)
+├── README_ENG.md                         # Documentation (EN)
+└── LICENSE                               # Лицензия Apache 2.0
 ```
 
 ---

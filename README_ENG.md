@@ -82,12 +82,29 @@ The add-in integrates into the Visual Basic Editor (VBE) environment via **Ribbo
 
 ```
 Addin_MacroTools_2.0/
-├── vba-files/              # VBA source code
-│   ├── Class/              # Class modules (.cls)
-│   ├── Form/               # UserForms (.frm)
-│   └── Module/             # Standard modules (.bas)
-├── Addin_MacroTools_v2.0.38_ENG.xlsb  # Compiled add-in
-└── MODULES_REFERENCE.md    # Complete module reference
+├── vba-files/                            # VBA source code
+│   ├── Class/                            # Class modules (7 files)
+│   │   ├── clsAnchors.cls                # UserForm anchors
+│   │   ├── clsLogging.cls                # CSV logging
+│   │   ├── clsObfuscator.cls             # VBA code obfuscation
+│   │   ├── clsOfficeArchiveManager.cls   # Office archive manager
+│   │   ├── clsSort2DArray.cls            # 2D array sorting
+│   │   ├── clsToolsVBACodeStatistics.cls # VBA code statistics
+│   │   └── clsVBECommandHandler.cls      # VBE command handler
+│   ├── Form/                             # UserForms (dialog windows)
+│   └── Module/                           # Standard modules (47 files)
+│       ├── modAddin*.bas                 # Add-in core (constants, menus, Ribbon, themes)
+│       ├── modFile*.bas                  # File operations (passwords, archives, properties)
+│       ├── modLiterals*.bas              # String literal parsing and replacement
+│       ├── modTools*.bas                 # VBA code tools
+│       └── modUFControls*.bas            # UserForm controls management
+├── docs/                                 # Documentation
+│   ├── MODULES_REFERENCE.md              # Module reference (RU)
+│   └── MODULES_REFERENCE_ENG.md          # Module reference (EN)
+├── Addin_MacroTools_v2.0.38_ENG.xlsb     # Compiled add-in
+├── README.md                             # Documentation (RU)
+├── README_ENG.md                         # Documentation (EN)
+└── LICENSE                               # Apache 2.0 License
 ```
 
 ---

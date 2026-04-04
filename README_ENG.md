@@ -6,7 +6,7 @@
 > **Powerful Excel VBA Add-in for Developers** \
 > **Author:** VBATools \
 > **Version:** 2.0.38 \
-> **License:** Apache License \
+> **License:** Apache License 
 
 > [!IMPORTANT]
 > **Password for the VBA project** $${\color{red}1}$$

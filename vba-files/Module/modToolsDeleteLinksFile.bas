@@ -49,7 +49,7 @@ Private Function OutputLinkInfo(ByVal typ As String, ByVal wbk As String, ByVal 
     ' Initialize report workbook on first call
     If g_ResultBook Is Nothing Then
         Set g_ResultBook = Workbooks.Add
-        With g_ResultBook.Worksheets.item(1)
+        With g_ResultBook.Worksheets.Item(1)
             ' Report header
             With .Range("A1:F1")
                 .value = "External Links Report"
@@ -89,7 +89,7 @@ Private Function OutputLinkInfo(ByVal typ As String, ByVal wbk As String, ByVal 
 
     ' Write data
     resultLn = resultLn + 1
-    With g_ResultBook.Worksheets.item(1)
+    With g_ResultBook.Worksheets.Item(1)
         .Range("A" & resultLn).value = typ
         .Range("B" & resultLn).value = Dir(wbk)
         .Range("C" & resultLn).value = wsh
@@ -347,9 +347,9 @@ Private Sub CheckDataValidationLinks(wksht As Worksheet, wkbk As Workbook, ByRef
                 On Error GoTo 0
                 key = fml
                 If dataValExtLinkRanges.Exists(key) Then
-                    Set dataValExtLinkRanges.item(key) = Application.Union(dataValExtLinkRanges(key), cell)
+                    Set dataValExtLinkRanges.Item(key) = Application.Union(dataValExtLinkRanges(key), cell)
                 Else
-                    Set dataValExtLinkRanges.item(key) = cell
+                    Set dataValExtLinkRanges.Item(key) = cell
                 End If
             End If
             On Error GoTo 0

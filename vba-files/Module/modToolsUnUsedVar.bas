@@ -15,7 +15,7 @@ Public Sub showFormUnUsedVariable()
     sNameWB = ActiveWorkbook.Name
     With frmForm
         .Show
-        If .lbOk.Caption = "-1" Then
+        If .lbOK.Caption = "-1" Then
             Set frmForm = Nothing
             Exit Sub
         End If
@@ -456,7 +456,7 @@ End Sub
 Private Function haveInCollection(ByRef ObjColl As Collection, ByRef sKey As String) As Long
     If ObjColl Is Nothing Then Exit Function
     On Error Resume Next
-    haveInCollection = ObjColl.item(sKey)
+    haveInCollection = ObjColl.Item(sKey)
     On Error GoTo 0
 End Function
 

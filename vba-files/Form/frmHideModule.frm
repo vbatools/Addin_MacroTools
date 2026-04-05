@@ -13,6 +13,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
+
 Option Explicit
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -48,7 +50,7 @@ Private Sub ListCode_Change()
         For i = 0 To .ListCount - 1
             If .Selected(i) Then
                 lbMsg.Visible = False
-                lbOk.Enabled = True
+                lbOK.Enabled = True
                 Call MsgSaveFile(cmbMain.value)
                 Exit Sub
             End If
@@ -56,7 +58,7 @@ Private Sub ListCode_Change()
     End With
 
     lbMsg.Visible = True
-    lbOk.Enabled = False
+    lbOK.Enabled = False
 End Sub
 Private Sub UserForm_Activate()
     Me.StartUpPosition = 0
@@ -79,7 +81,7 @@ Private Sub UserForm_Activate()
         Call MsgSaveFile(.value)
     End With
     Call AddListCode
-    lbOk.Enabled = False
+    lbOK.Enabled = False
 
     Exit Sub
 ErrorHandler:
@@ -97,10 +99,10 @@ Private Sub MsgSaveFile(ByVal WBName As String)
     With wb
         If .Path = vbNullString Then
             lbSave.Visible = True
-            lbOk.Enabled = False
+            lbOK.Enabled = False
         Else
             lbSave.Visible = False
-            lbOk.Enabled = True
+            lbOK.Enabled = True
         End If
     End With
 End Sub

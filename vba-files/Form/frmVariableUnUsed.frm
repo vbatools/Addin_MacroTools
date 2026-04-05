@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Option Explicit
 
 Dim clsAnc          As clsAnchors
@@ -34,7 +35,7 @@ Private Sub cmbMain_Change()
 End Sub
 
 Private Sub lbAnaliz_Click()
-    lbOk.Caption = 0
+    lbOK.Caption = 0
     Me.Hide
 End Sub
 

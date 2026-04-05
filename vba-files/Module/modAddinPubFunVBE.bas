@@ -36,11 +36,11 @@ Public Function GetSelectControl(Optional bUserForm As Boolean = False) As Objec
            If Not objActiveModule Is Nothing Then
                Dim collCntls As Controls
                Set collCntls = objActiveModule.Designer.Selected
-               If TypeName(collCntls.item(0)) = "Frame" And collCntls.Count = 1 Then
+               If TypeName(collCntls.Item(0)) = "Frame" And collCntls.Count = 1 Then
                    Dim cnt As control
                    Dim wnd As Object
                    Dim wndAct As Object
-                   Set cnt = collCntls.item(0)
+                   Set cnt = collCntls.Item(0)
                    Set wndAct = objActiveModule.VBE.ActiveWindow
                    For Each wnd In objActiveModule.VBE.Windows
                        If wnd.Type = vbext_wt_PropertyWindow Then

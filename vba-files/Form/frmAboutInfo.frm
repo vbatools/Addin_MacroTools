@@ -13,6 +13,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
+
 Option Explicit
 
 Private Sub lbCancel_Click()
@@ -20,7 +22,7 @@ Private Sub lbCancel_Click()
 End Sub
 
 Private Sub lbGoGitHub_Click()
-    Call URLLinks("")
+    Call URLLinks("https://github.com/vbatools/Addin_MacroTools")
 End Sub
 
 Private Sub UserForm_Initialize()

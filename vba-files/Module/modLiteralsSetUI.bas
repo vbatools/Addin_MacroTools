@@ -122,7 +122,7 @@ Public Sub WriteXML(ByRef arrUI As Variant, ByRef i As Long, ByRef oXMLDoc As MS
         If oXMLNodeList Is Nothing Then
             If oXMLNodeList.Length = 0 Then arrUI(i, UIColumns.UI_Status) = "id attribute not found"
         Else
-            If ChangeAttribute(oXMLNodeList.item(0).Attributes, _
+            If ChangeAttribute(oXMLNodeList.Item(0).Attributes, _
                     CStr(arrUI(i, UIColumns.UI_AttrName)), _
                     CStr(arrUI(i, UIColumns.UI_AttrTextNew))) Then
                 arrUI(i, UIColumns.UI_Status) = "modified"
@@ -133,7 +133,7 @@ Public Sub WriteXML(ByRef arrUI As Variant, ByRef i As Long, ByRef oXMLDoc As MS
             If CStr(arrUI(i, UIColumns.UI_IdOriginal)) <> CStr(arrUI(i, UIColumns.UI_IdNew)) _
                     And Len(CStr(arrUI(i, UIColumns.UI_IdNew))) > 0 Then
 
-                Call ChangeAttribute(oXMLNodeList.item(0).Attributes, "id", CStr(arrUI(i, UIColumns.UI_IdNew)))
+                Call ChangeAttribute(oXMLNodeList.Item(0).Attributes, "id", CStr(arrUI(i, UIColumns.UI_IdNew)))
                 arrUI(i, UIColumns.UI_Status) = arrUI(i, UIColumns.UI_Status) & vbNewLine & "id modified"
             End If
         End If

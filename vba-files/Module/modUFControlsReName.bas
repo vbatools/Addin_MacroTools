@@ -21,7 +21,7 @@ Public Sub RenameControl()
     If selectedControls Is Nothing Then Exit Sub
     Select Case TypeName(selectedControls)
              Case "Controls"
-            Set selectedControl = selectedControls.item(0)
+            Set selectedControl = selectedControls.Item(0)
         Case Else
             Set selectedControl = selectedControls
     End Select

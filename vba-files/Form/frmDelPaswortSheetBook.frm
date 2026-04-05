@@ -13,6 +13,8 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
+
 Option Explicit
 
 Private Sub btnCancel_Click()
@@ -68,5 +70,5 @@ Private Sub loadDataToList()
             i = i + 1
         Next sh
     End With
-    lbOk.Enabled = (bHaveShProtect Or lbMsg.Visible)
+    lbOK.Enabled = (bHaveShProtect Or lbMsg.Visible)
 End Sub

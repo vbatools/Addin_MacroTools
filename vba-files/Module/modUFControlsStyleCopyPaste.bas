@@ -38,7 +38,7 @@ Private Sub CopyStyle(bUserForm As Boolean)
     Set cnt = GetSelectControl(bUserForm)
     If cnt Is Nothing Then Exit Sub
 
-    If TypeName(cnt) = "Controls" Then Set cnt = cnt.item(0)
+    If TypeName(cnt) = "Controls" Then Set cnt = cnt.Item(0)
 
     'set default values
     tpStyle.bCopy = True

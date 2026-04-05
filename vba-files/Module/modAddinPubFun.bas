@@ -298,7 +298,7 @@ Public Function fileDialogFun(ByVal sPath As String, _
         ReDim arr(1 To iCount, 1 To 1) As String
         For i = 1 To iCount
             'arr(i) = VBA.CStr(.SelectedItems.Item(i))
-            arr(i, 1) = VBA.CStr(.SelectedItems.item(i))
+            arr(i, 1) = VBA.CStr(.SelectedItems.Item(i))
         Next
     End With
     fileDialogFun = arr
@@ -530,7 +530,7 @@ End Function
 Public Function GetTargetWorkbook(ByRef wb As Workbook, ByVal sCaptionForm As String, ByVal sCaptionBtnOk As String) As Boolean
     With frmListWBOpen
         .Caption = sCaptionForm
-        .lbOk.Caption = sCaptionBtnOk
+        .lbOK.Caption = sCaptionBtnOk
         .Show
 
         If .cmbMain.value = vbNullString Or .lbRes.Caption = "0" Then Exit Function

@@ -33,6 +33,7 @@ Public Sub getAllLiteralsFile()
     Call OutputResults(ActiveWorkbook, STR_CODE, sFullNameFile, arr)
     Debug.Print vbTab & ">> " & VBA.Format$(VBA.Now() - dtStart, FORMAT_TIME) & " Code VBA"
 
+    DoEvents
     arr = GetArrayFromDictionary(parserLiteralsFormUI(wb, Array("label", "supertip", "screentip", "title", "description"), False, True))
     Call OutputResults(ActiveWorkbook, STR_UI, sFullNameFile, arr)
     Debug.Print vbTab & ">> " & VBA.Format$(VBA.Now() - dtStart, FORMAT_TIME) & " Ribbon Control UI"

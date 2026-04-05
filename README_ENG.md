@@ -48,6 +48,7 @@ The add-in integrates into the Visual Basic Editor (VBE) environment via **Ribbo
 - **Hide Modules** — hide modules from VBE project window
 - **Remove Sheet/Workbook Passwords** — remove protection via XML
 - **VBA Obfuscation** — rename variables, procedures, modules
+    [Obfuscation instructions](docs/OBFUSCATION_INSTRUCTION_ENG.md)
 
 ### 📦 File Operations
 - **Unpack Office Files** — view internal structure (.xlsx, .xlsm, .xlsb)
@@ -158,7 +159,7 @@ Addin_MacroTools_2.0/
 ### Classes
 | Class | Description |
 |-------|-------------|
-| `clsObfuscator` | VBA project obfuscator |
+| `clsObfuscator` | [VBA project obfuscator](docs/OBFUSCATION_INSTRUCTION_ENG.md) |
 | `clsOfficeArchiveManager` | Office archive manager |
 | `clsToolsVBACodeStatistics` | VBA code statistics |
 | `clsLogging` | CSV logger |

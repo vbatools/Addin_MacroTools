@@ -47,7 +47,8 @@
 - **Unviewable защита** — установка/удаление защиты "Unviewable VBA Project"
 - **Скрытие модулей** — скрытие модулей из окна проекта VBE
 - **Удаление паролей листов/книги** — снятие защиты через XML
-- **Обфускация VBA** — переименование переменных, процедур, модулей
+- **Обфускация VBA** — переименование переменных, процедур, модулей. 
+    [Инструкция обфускации](docs/OBFUSCATION_INSTRUCTION.md)
 
 ### 📦 Работа с файлами
 - **Распаковка Office файлов** — просмотр внутренней структуры (.xlsx, .xlsm, .xlsb)
@@ -158,7 +159,7 @@ Addin_MacroTools_2.0/
 ### Классы
 | Класс | Описание |
 |-------|----------|
-| `clsObfuscator` | Обфускатор VBA-проекта |
+| `clsObfuscator` | [Обфускатор VBA-проекта](docs/OBFUSCATION_INSTRUCTION.md)|
 | `clsOfficeArchiveManager` | Менеджер архивов Office |
 | `clsToolsVBACodeStatistics` | Статистика VBA-кода |
 | `clsLogging` | Логгер CSV |

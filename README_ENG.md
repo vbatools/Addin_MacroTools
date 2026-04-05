@@ -47,7 +47,7 @@ The add-in integrates into the Visual Basic Editor (VBE) environment via **Ribbo
 - **Unviewable Protection** — set/remove "Unviewable VBA Project" protection
 - **Hide Modules** — hide modules from VBE project window
 - **Remove Sheet/Workbook Passwords** — remove protection via XML
-- **VBA Obfuscation** — rename variables, procedures, modules
+- **VBA Obfuscation** — rename variables, procedures, modules \
     [Obfuscation instructions](docs/OBFUSCATION_INSTRUCTION_ENG.md)
 
 ### 📦 File Operations

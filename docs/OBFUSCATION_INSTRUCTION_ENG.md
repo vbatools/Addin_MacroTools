@@ -440,12 +440,6 @@ Only strings **in VBA code** are obfuscated, not in cell formulas.
 
 ## Limitations and Warnings
 
-> [!CRITICAL]
-> **⚠️ ATTENTION: THIS IS A CRITICALLY IMPORTANT SECTION! ⚠️**
-> 
-> **Read this section carefully before running obfuscation!**
-> **Obfuscation is IRREVERSIBLE — always create a backup copy!**
-> 
 > 🚨 **IGNORING THESE WARNINGS MAY RESULT IN LOSS OF CODE FUNCTIONALITY!** 🚨
 
 ### ⚠️ Important Limitations

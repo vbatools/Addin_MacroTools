@@ -440,8 +440,6 @@ Only strings **in VBA code** are obfuscated, not in cell formulas.
 
 ## Limitations and Warnings
 
-> 🚨 **IGNORING THESE WARNINGS MAY RESULT IN LOSS OF CODE FUNCTIONALITY!** 🚨
-
 ### ⚠️ Important Limitations
 
 1. **Variable Name Conflicts with Object Properties**

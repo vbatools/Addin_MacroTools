@@ -22,7 +22,7 @@
 8. [What Gets Obfuscated](#what-gets-obfuscated)
 9. [What Does NOT Get Obfuscated](#what-does-not-get-obfuscated)
 10. [Recovery and Debugging](#recovery-and-debugging)
-11. [⚠️🚨 Limitations and Warnings](#limitations-and-warnings) **← CRITICALLY IMPORTANT SECTION!**
+11. ⚠️🚨[Limitations and Warnings](#limitations-and-warnings) **← CRITICALLY IMPORTANT SECTION!**
 12. [Frequently Asked Questions](#frequently-asked-questions)
 
 ---
@@ -438,7 +438,7 @@ Only strings **in VBA code** are obfuscated, not in cell formulas.
 
 ---
 
-## 🚨 Limitations and Warnings
+## Limitations and Warnings
 
 > [!CRITICAL]
 > **⚠️ ATTENTION: THIS IS A CRITICALLY IMPORTANT SECTION! ⚠️**

@@ -549,7 +549,7 @@ End Function
 ' Count the number of regular expression matches
 Private Function CountRegexMatches(ByRef objRegEx As Object, ByVal sText As String, ByVal sPattern As String) As Long
     If VBA.Len(sText) = 0 Then Exit Function
-
+    sPattern = RegexEscape(sPattern)
     With objRegEx
         .pattern = "(?:^|[\r\n\(\.\s,=" & Chr$(34) & "])" & sPattern & "(?:$|[\)\.\s,(" & Chr$(34) & "])"
         CountRegexMatches = .Execute(sText).Count

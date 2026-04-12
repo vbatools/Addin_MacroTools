@@ -22,6 +22,16 @@ Public Enum enumParametrVersion
     [_Last] = enAll
 End Enum
 
+Public Function RegexEscape(ByVal sInput As String) As String
+    Dim sSpecial As String, i As Long, sChar As String
+    sSpecial = "\^$.|?*+()[]{}"
+    For i = 1 To Len(sSpecial)
+        sChar = mid(sSpecial, i, 1)
+        sInput = Replace(sInput, sChar, "\" & sChar)
+    Next i
+    RegexEscape = sInput
+End Function
+
 Public Function Version(ByVal Parametr As enumParametrVersion) As String
     Dim sRes        As String
     Dim arr         As Variant

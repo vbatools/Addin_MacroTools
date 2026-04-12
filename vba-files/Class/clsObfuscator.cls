@@ -703,16 +703,6 @@ Private Function GetWordBoundaryPattern(ByVal sName As String) As String
     GetWordBoundaryPattern = "(^|[^a-zA-Z0-9_\" & Chr(34) & "])" & sName & "(?!:=)([^a-zA-Z0-9_\" & Chr(34) & "]|$)"
 End Function
 
-Private Function RegexEscape(ByVal sInput As String) As String
-    Dim sSpecial As String, i As Long, sChar As String
-    sSpecial = "\^$.|?*+()[]{}"
-    For i = 1 To Len(sSpecial)
-        sChar = mid(sSpecial, i, 1)
-        sInput = Replace(sInput, sChar, "\" & sChar)
-    Next i
-    RegexEscape = sInput
-End Function
-
 Private Function SaveBackupCopy() As Boolean
     Dim sWBName     As String
     Application.DisplayAlerts = False
@@ -840,7 +830,7 @@ Private Sub writeUI()
     Dim mFSO        As Object
     Set mFSO = CreateObject("Scripting.FileSystemObject")
 
-    sFullName = VBA.Replace(sFullName, "â€”", "-")
+    sFullName = VBA.Replace(sFullName, "—", "-")
     With mFSO
         sFolderName = .GetParentFolderName(sFullName) & Application.PathSeparator & PREFIX_UNZIPPED & .getFileName(sFullName)
     End With

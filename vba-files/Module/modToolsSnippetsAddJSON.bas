@@ -123,7 +123,7 @@ Private Sub GetAllFiles(currentFolder As Object, ByRef fileDict As Dictionary)
     Set file = Nothing
 
     For Each subFolder In currentFolder.SubFolders
-        Call GetAllFiles(subFolder, fileDict)
+        If VBA.Left(subFolder.Name, 1) <> "." Then Call GetAllFiles(subFolder, fileDict)
     Next subFolder
 End Sub
 

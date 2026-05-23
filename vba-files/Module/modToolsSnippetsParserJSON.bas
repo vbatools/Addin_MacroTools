@@ -5,9 +5,9 @@ Option Explicit
 '    Dim sPathJSON   As String
 '    sPathJSON = ""
 '
-'    ' РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
+'    ' Проверка существования файла
 '    If Not FileHave(sPathJSON, vbNormal) Then
-'        MsgBox "Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ: " & sPathJSON, vbExclamation, "Р’РЅРёРјР°РЅРёРµ"
+'        MsgBox "Файл не найден: " & sPathJSON, vbExclamation, "Внимание"
 '        Exit Sub
 '    End If
 '
@@ -41,10 +41,10 @@ End Sub
 
 Public Sub parserJSONtoTableSnippets(ByVal sJSON As String)
 
-    ' РљРѕРЅСЃС‚Р°РЅС‚С‹ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё РјР°СЃСЃРёРІР°
+    ' Константы размерности массива
     Const COL_COUNT As Long = 9
 
-    ' РќРѕРјРµСЂР° СЃС‚РѕР»Р±С†РѕРІ
+    ' Номера столбцов
     Const COL_CODE_GRUP As Long = 1
     Const COL_CODE_SNIPPET As Long = 2
     Const COL_CODE  As Long = 3
@@ -138,7 +138,7 @@ Public Sub parserJSONtoTableSnippets(ByVal sJSON As String)
                             GoTo NextItem
                     End Select
 
-                    ' Р”Р»СЏ frx РЅРµ РґРѕР±Р°РІР»СЏРµРј РёРјСЏ С„Р°Р№Р»Р°
+                    ' Для frx не добавляем имя файла
                     If sEXP <> "frx" Then
                         If arrtable(i, lColName) <> vbNullString Then
                             arrtable(i, lColName) = arrtable(i, lColName) & ";"
@@ -146,7 +146,7 @@ Public Sub parserJSONtoTableSnippets(ByVal sJSON As String)
                         arrtable(i, lColName) = arrtable(i, lColName) & sBaseName
                     End If
 
-                    ' Р”РѕР±Р°РІР»РµРЅРёРµ СЃСЃС‹Р»РєРё
+                    ' Добавление ссылки
                     If arrtable(i, lColRef) <> vbNullString Then
                         arrtable(i, lColRef) = arrtable(i, lColRef) & ";"
                     End If
@@ -162,7 +162,7 @@ NextItem:
 
 
 
-    ' Р’С‹РіСЂСѓР·РєР° РІ С‚Р°Р±Р»РёС†Сѓ
+    ' Выгрузка в таблицу
     With shSettings.ListObjects("TB_SNIPETS")
         If Not .DataBodyRange Is Nothing Then
             .DataBodyRange.Delete

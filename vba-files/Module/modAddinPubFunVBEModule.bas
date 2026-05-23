@@ -114,7 +114,7 @@ Private Function CopyModuleTypeForm(ByRef vbProj As VBIDE.vbProject, ByRef VBCom
 
     On Error GoTo ErrorHandler
 
-    sFullFileName = vbProj.FileName
+    sFullFileName = vbProj.fileName
     sNameFile = sGetFileName(sFullFileName)
     sNamePath = sGetParentFolderName(sFullFileName)
 
@@ -123,9 +123,9 @@ Private Function CopyModuleTypeForm(ByRef vbProj As VBIDE.vbProject, ByRef VBCom
     sFullFileNameNew = sNamePath & sNameModNew & ".bas"
 
     VBComp.Name = sNameModNew
-    Call VBComp.Export(FileName:=sFullFileNameNew)
+    Call VBComp.Export(fileName:=sFullFileNameNew)
     VBComp.Name = sNameMod
-    Call vbProj.VBComponents.Import(FileName:=sFullFileNameNew)
+    Call vbProj.VBComponents.Import(fileName:=sFullFileNameNew)
     Call Kill(sFullFileNameNew)
     Call Kill(sNamePath & sNameModNew & ".frx")
 
@@ -233,9 +233,9 @@ End Function
 Private Function getFileNameOnVBProject(Optional vbProj As VBIDE.vbProject = Nothing) As String
     On Error GoTo ErrorHandler
     If vbProj Is Nothing Then
-        getFileNameOnVBProject = sGetFileName(Application.VBE.ActiveVBProject.FileName)
+        getFileNameOnVBProject = sGetFileName(Application.VBE.ActiveVBProject.fileName)
     Else
-        getFileNameOnVBProject = sGetFileName(vbProj.FileName)
+        getFileNameOnVBProject = sGetFileName(vbProj.fileName)
     End If
     Exit Function
 ErrorHandler:

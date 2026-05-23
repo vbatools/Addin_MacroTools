@@ -46,7 +46,7 @@ Private Sub UserForm_Activate()
     With cmbMain
         .Clear
         For Each vbProj In Application.VBE.VBProjects
-            .AddItem sGetFileName(vbProj.FileName)
+            .AddItem sGetFileName(vbProj.fileName)
         Next
         If lbWord.Caption = "1" Then Call getWord(cmbMain)
         .value = ActiveWorkbook.Name
@@ -61,7 +61,7 @@ Private Sub getWord(ByRef oList As MSForms.ComboBox)
     Dim sVal        As String
     Set objW = GetObject(, "Word.Application")
     For Each vbProj In objW.VBE.VBProjects
-        sVal = sGetFileName(vbProj.FileName)
+        sVal = sGetFileName(vbProj.fileName)
         If sVal Like "*.docm" Or sVal Like "*.DOCM" Then oList.AddItem sVal
     Next
 End Sub

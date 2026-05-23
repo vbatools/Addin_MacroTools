@@ -61,7 +61,7 @@ Private Sub UserForm_Activate()
         .Clear
         On Error Resume Next
         For Each vbProj In Application.VBE.VBProjects
-            .AddItem sGetFileName(vbProj.FileName)
+            .AddItem sGetFileName(vbProj.fileName)
         Next
         .value = ActiveWorkbook.Name
         On Error GoTo 0

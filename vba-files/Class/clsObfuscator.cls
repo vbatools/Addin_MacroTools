@@ -242,7 +242,7 @@ Private Sub ProcessUserForms()
 
         iCount = m_dictControls.Count - 1
         For i = 0 To iCount
-            sKey = m_dictControls.keys(i)
+            sKey = m_dictControls.Keys(i)
             sItem = m_dictControls.Items(i)
             arrKeys = VBA.Split(sKey, ".")
             sNameModule = arrKeys(0)
@@ -354,7 +354,7 @@ Private Sub ProcessModulesRename()
         Dim strModuleName As String
         Dim strEncodedName As String
 
-        strModuleName = m_dictModules.keys(i)
+        strModuleName = m_dictModules.Keys(i)
         strEncodedName = AddEncodedName("Module." & strModuleName)
         arrEncodedNames(i) = strEncodedName
 
@@ -377,7 +377,7 @@ Private Sub WriteChangesToProject()
 
     lCount = m_dictModules.Count - 1
     For i = 0 To lCount
-        strModuleName = m_dictModules.keys(i)
+        strModuleName = m_dictModules.Keys(i)
 
         ' Generate name (should match what was in ProcessModulesRename)
         ' In real code it is better to save the list of arrEncodedNames in a class property
@@ -423,7 +423,7 @@ Private Sub GenerateReport()
         Dim i As Long, j As Long
 
         arrItems = .Items
-        arrKeys = .keys
+        arrKeys = .Keys
         ReDim arrRes(1 To iCount, 1 To 5)
 
         For i = 0 To iCount - 1
@@ -570,7 +570,7 @@ Private Sub replaceAllModuleControls(ByVal sOldName As String, ByVal sNewName As
     Dim hasChanges  As Boolean
     Dim sNameModule As String
 
-    For Each varKey In m_dictModules.keys
+    For Each varKey In m_dictModules.Keys
         sNameModule = CStr(varKey)
         If sNameModule <> sExceptModule Then
             sCode = m_dictModules(sNameModule)
@@ -586,7 +586,7 @@ End Sub
 
 Private Sub ReplaceInAllModules(ByVal sOldName As String, ByVal sNewName As String, ByVal sExceptModule As String)
     Dim varKey      As Variant
-    For Each varKey In m_dictModules.keys
+    For Each varKey In m_dictModules.Keys
         If CStr(varKey) <> sExceptModule Then
             Call ReplaceInModule(CStr(varKey), GetWordBoundaryPattern(sOldName), "$1" & sNewName & "$2")
         End If
@@ -623,7 +623,7 @@ Private Sub ReplaceInSpecificSub(ByVal sModuleName As String, ByVal strNameRepla
         Dim strNewBlockText As String
         strNewBlockText = m_objRegexVar.Replace(strBlockText, "$1" & strPattern & "$2")
 
-        m_dictModules(sModuleName) = Left(sCode, matchBlock.FirstIndex) & strNewBlockText & mid(sCode, matchBlock.FirstIndex + matchBlock.Length + 1)
+        m_dictModules(sModuleName) = Left(sCode, matchBlock.FirstIndex) & strNewBlockText & Mid(sCode, matchBlock.FirstIndex + matchBlock.Length + 1)
     End If
 End Sub
 

@@ -39,7 +39,7 @@ Public Function renameLiteralsToUI(ByRef wb As Workbook, ByRef arrUI As Variant)
 
     bOperationSuccess = False
 
-    If Not IsArray(arrUI) Then Exit Function
+    If Not isArray(arrUI) Then Exit Function
     If wb Is Nothing Then Exit Function
 
     sFullNameFile = wb.FullName
@@ -87,7 +87,7 @@ Public Function renameLiteralsToUI(ByRef wb As Workbook, ByRef arrUI As Variant)
 CleanUp:
     On Error Resume Next
     Application.DisplayAlerts = False
-    Set wb = Workbooks.Open(FileName:=sFullNameFile, UpdateLinks:=0)
+    Set wb = Workbooks.Open(fileName:=sFullNameFile, UpdateLinks:=0)
     Application.DisplayAlerts = True
     On Error GoTo 0
 

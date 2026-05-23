@@ -22,6 +22,10 @@ Private Sub btnInToFile(control As IRibbonControl)
     Call addListInFileFiles
 End Sub
 
+Private Sub btnExtractorFile(control As IRibbonControl)
+    Call fileExtractorFromExcelFile
+End Sub
+
 Private Sub btnUnProtectVBA(control As IRibbonControl)
     Call unProtectVBA
 End Sub
@@ -96,6 +100,18 @@ End Sub
 
 Private Sub btnRegExpr(control As IRibbonControl)
     Call AddSheetTestRegExp
+End Sub
+
+Private Sub btnExportSnippets(control As IRibbonControl)
+    Call addSnipetsDirectory
+End Sub
+
+Private Sub btnImportSnippets(control As IRibbonControl)
+    Call ReadSnippetsJsonFromGitHub
+End Sub
+
+Private Sub btnOpenSnippetsGitHub(control As IRibbonControl)
+     Call URLLinks("https://github.com/vbatools/Addin_MacroToolsVBA_Snippets")
 End Sub
 
 Private Sub btnDeleteExternalLinks(control As IRibbonControl)

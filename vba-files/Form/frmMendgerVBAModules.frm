@@ -179,7 +179,7 @@ Private Sub UserForm_Initialize()
 
     On Error Resume Next
     For Each objVBProject In Application.VBE.VBProjects
-        cmbMain.AddItem sGetFileName(objVBProject.FileName)
+        cmbMain.AddItem sGetFileName(objVBProject.fileName)
     Next objVBProject
 
     If FileHave(ActiveWorkbook.FullName, vbNormal) Then cmbMain.value = ActiveWorkbook.Name

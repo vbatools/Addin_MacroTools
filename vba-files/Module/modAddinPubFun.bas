@@ -26,13 +26,13 @@ Public Function RegexEscape(ByVal sInput As String) As String
     Dim sSpecial As String, i As Long, sChar As String
     sSpecial = "\^$.|?*+()[]{}"
     For i = 1 To Len(sSpecial)
-        sChar = mid(sSpecial, i, 1)
+        sChar = Mid(sSpecial, i, 1)
         sInput = Replace(sInput, sChar, "\" & sChar)
     Next i
     RegexEscape = sInput
 End Function
 
-Public Function Version(ByVal Parametr As enumParametrVersion) As String
+Public Function Version(ByVal Parametr As enumParametrVersion, Optional bOnlyValue As Boolean = False) As String
     Dim sRes        As String
     Dim arr         As Variant
     arr = shSettings.ListObjects(TB_ABOUT).DataBodyRange.Value2
@@ -46,7 +46,11 @@ Public Function Version(ByVal Parametr As enumParametrVersion) As String
             Next i
         Case Else:
             If arr(Parametr, 3) = 1 Then arr(i, 2) = VBA.Format$(arr(Parametr, 2), FORMAT_DATE)
-            sRes = arr(Parametr, 1) & ": " & arr(Parametr, 2)
+            If bOnlyValue Then
+                sRes = arr(Parametr, 2)
+            Else
+                sRes = arr(Parametr, 1) & ": " & arr(Parametr, 2)
+            End If
     End Select
     Version = sRes
 End Function
@@ -98,41 +102,41 @@ End Sub
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Function FileHave(ByVal Path As String, ByVal fileAttribute As VbFileAttribute) As Boolean
-    Dim fso         As Object
+    Dim FSO         As Object
 
     ' Check for empty
     If Path = vbNullString Then Exit Function
     ' Create FileSystemObject
-    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set FSO = CreateObject("Scripting.FileSystemObject")
     ' Depending on the IsFolder parameter, choose the check method
     Select Case fileAttribute
-             Case VbFileAttribute.vbDirectory
+        Case VbFileAttribute.vbDirectory
             ' Look for folder
-            FileHave = fso.FolderExists(Path)
+            FileHave = FSO.FolderExists(Path)
         Case VbFileAttribute.vbNormal
             ' Look for file
-            FileHave = fso.FileExists(Path)
+            FileHave = FSO.FileExists(Path)
     End Select
     ' Free memory
-    Set fso = Nothing
+    Set FSO = Nothing
 End Function
 
 Public Function sGetBaseName(ByVal sPathFile As String) As String
     'sPathFile - string, path.
     'Returns the name (without extension) of the last component in the specified path.
-    Dim fso         As Object
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    sGetBaseName = fso.GetBaseName(sPathFile)
-    Set fso = Nothing
+    Dim FSO         As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    sGetBaseName = FSO.GetBaseName(sPathFile)
+    Set FSO = Nothing
 End Function
 
 Public Function sGetExtensionName(ByVal sPathFile As String) As String
     'sPathFile - string, path.
     'Returns the extension of the last component in the specified path.
-    Dim fso         As Object
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    sGetExtensionName = fso.GetExtensionName(sPathFile)
-    Set fso = Nothing
+    Dim FSO         As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    sGetExtensionName = FSO.GetExtensionName(sPathFile)
+    Set FSO = Nothing
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -146,10 +150,10 @@ End Function
 '*
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Public Function sGetFileName(ByVal sPathFile As String) As String
-    Dim fso         As Object
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    sGetFileName = fso.getFileName(sPathFile)
-    Set fso = Nothing
+    Dim FSO         As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    sGetFileName = FSO.getFileName(sPathFile)
+    Set FSO = Nothing
 End Function
 
 Public Function MoveFile(OldFile As String, NewPathFile As String) As Boolean
@@ -166,10 +170,10 @@ End Function
 Public Function sGetParentFolderName(ByVal sPathFile As String) As String
     'sPathFile - string, path.
     'Returns the path to the last component in the specified path (its directory).
-    Dim fso         As Object
-    Set fso = CreateObject("Scripting.FileSystemObject")
-    sGetParentFolderName = fso.GetParentFolderName(sPathFile)
-    Set fso = Nothing
+    Dim FSO         As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    sGetParentFolderName = FSO.GetParentFolderName(sPathFile)
+    Set FSO = Nothing
 End Function
 
 '* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -282,6 +286,7 @@ Public Function fileDialogFun(ByVal sPath As String, _
         Optional sExpansion As String = "*.xlsm;*.xlsb;*.xlsx") As String()
 
     If sPath = vbNullString Or Not (Dir(sPath, vbDirectory) <> vbNullString) Then sPath = ThisWorkbook.Path
+    If sPath = vbNullString Then sPath = Environ("USERPROFILE") & Application.PathSeparator & "Desktop"
 
     Dim oFd         As FileDialog
     Set oFd = Application.FileDialog(msoFileDialogFilePicker)
@@ -319,23 +324,23 @@ End Function
 
 ' Main function: Returns a two-dimensional array with file information
 Function GetFilesTable(ByVal folderPath As String) As Variant
-    Dim fso         As Object
+    Dim FSO         As Object
     Dim folder      As Object
     Dim fileCount   As Long
     Dim varResult   As Variant
     Dim rowIndex    As Long
 
     ' Create FileSystemObject
-    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set FSO = CreateObject("Scripting.FileSystemObject")
 
     ' 1. Check if folder exists
-    If Not fso.FolderExists(folderPath) Then
+    If Not FSO.FolderExists(folderPath) Then
         MsgBox "Specified folder does not exist:" & folderPath, vbExclamation, "Error"
         GetFilesTable = Array()    ' Return empty array
         Exit Function
     End If
 
-    Set folder = fso.GetFolder(folderPath)
+    Set folder = FSO.GetFolder(folderPath)
 
     ' 2. First pass: Count files
     fileCount = CountFilesRecursive(folder)
@@ -360,13 +365,13 @@ Function GetFilesTable(ByVal folderPath As String) As Variant
 
     ' Free memory
     Set folder = Nothing
-    Set fso = Nothing
+    Set FSO = Nothing
 End Function
 
 ' Helper function: Recursive file count
 Private Function CountFilesRecursive(ByVal currentFolder As Object) As Long
     Dim subFolder   As Object
-    Dim lCount       As Long
+    Dim lCount      As Long
 
     lCount = currentFolder.Files.Count
 
@@ -458,7 +463,7 @@ Public Sub OutputResults(ByRef wb As Workbook, ByRef sSheetName As String, ByRef
     iRow = UBound(arrOutput, 1)
     If LBound(arrOutput, 1) = 0 Then iRow = iRow + 1
     With wsTarget
-        If IsArray(arrOutput) Then
+        If isArray(arrOutput) Then
             .Cells(3, 1).Resize(iRow, iCol).Value2 = arrOutput
             Rows("3:" & iRow + 3).RowHeight = 15
         End If
@@ -493,10 +498,10 @@ End Sub
 Public Function FilterArrayByText(ByRef vSourceArray As Variant, ByVal iColSerch As Byte, ByVal sSearch As String) As Variant
     Dim i           As Long
     Dim lCount      As Long
-    Dim lRowsStart       As Long
-    Dim lRowsEnd       As Long
-    Dim lColsStart       As Long
-    Dim lColsEnd       As Long
+    Dim lRowsStart  As Long
+    Dim lRowsEnd    As Long
+    Dim lColsStart  As Long
+    Dim lColsEnd    As Long
     Dim arrResult() As Variant
 
     sSearch = VBA.UCase$(sSearch)

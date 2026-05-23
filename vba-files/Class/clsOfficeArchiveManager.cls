@@ -22,7 +22,7 @@ Option Explicit
 Public Enum SettingsValue
     FileFolder
     FileFullName
-    FileName
+    fileName
     FileExtension
     FileType
     FileRelsPath
@@ -40,6 +40,7 @@ Public Enum SettingsValue
     FolderCustomUI
     FolderDocProps
     'for excel
+    ExlFolderEmbeddings
     ExlFolderWorkSheets
     ExlFileWorkBook
     ExlFileWorkBookRels
@@ -91,7 +92,7 @@ Public Function GetSettings(ByVal enValue As SettingsValue) As String
 
         Case SettingsValue.FileFullName: GetSettings = mFileFullName
         Case SettingsValue.FileFullNameBackup: GetSettings = mFileFullNameBackup
-        Case SettingsValue.FileName: GetSettings = mFileName
+        Case SettingsValue.fileName: GetSettings = mFileName
         Case SettingsValue.FileExtension: GetSettings = mFileExtension
         Case SettingsValue.FileFolder: GetSettings = mFileFolder
         Case SettingsValue.FileType: GetSettings = mFileType
@@ -99,6 +100,8 @@ Public Function GetSettings(ByVal enValue As SettingsValue) As String
         Case SettingsValue.FileVBAProject
             If mFileType = "xl" Then GetSettings = sBasePath & mFileType & Application.PathSeparator & "vbaProject.bin"
             'for excel
+        Case SettingsValue.ExlFolderEmbeddings
+             If mFileType = "xl" Then GetSettings = sBasePath & mFileType & Application.PathSeparator & "embeddings"
         Case SettingsValue.FolderPrinterSettings
             If mFileType = "xl" Then GetSettings = sBasePath & mFileType & Application.PathSeparator & "printerSettings"
         Case SettingsValue.FilePrinterSettings

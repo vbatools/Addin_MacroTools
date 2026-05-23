@@ -37,7 +37,7 @@ CleanUp:
     If bZIPFile Then
         On Error Resume Next
         Application.DisplayAlerts = False
-        Set wb = Workbooks.Open(FileName:=sFullNameFile, UpdateLinks:=0)
+        Set wb = Workbooks.Open(fileName:=sFullNameFile, UpdateLinks:=0)
         Application.DisplayAlerts = True
         On Error GoTo 0
     End If

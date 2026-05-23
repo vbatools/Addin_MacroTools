@@ -166,7 +166,7 @@ End Sub
 
 Private Sub ValidateArray(ByRef vArr As Variant, ByRef iCol As Long)
     ' Check that a variant is an array
-    If Not IsArray(vArr) Then
+    If Not isArray(vArr) Then
         Err.Raise ERR_NOT_2D_ARRAY, "clsSort2DArray.ValidateArray", ERR_MSG_NOT_2D
     End If
 

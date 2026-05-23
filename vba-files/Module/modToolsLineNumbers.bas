@@ -170,10 +170,10 @@ Private Function RemoveLineNumbers(ByVal sLine As String, ByRef lPaddingLength A
         ' Check if prefix is a number (protection from removing colons in code)
         If VBA.IsNumeric(sPrefix) Then
             ' Return the part of the string after the colon.
-            sLine = VBA.mid$(sLine, lColonPos + 2)
+            sLine = VBA.Mid$(sLine, lColonPos + 2)
             lDel = lPaddingLength - VBA.Len(sPrefix)
             If VBA.Len(sLine) > lDel And lDel > 0 Then
-                If VBA.mid(sLine, 1, lDel) = " " Then sLine = VBA.Right$(sLine, VBA.Len(sLine) - lDel)
+                If VBA.Mid(sLine, 1, lDel) = " " Then sLine = VBA.Right$(sLine, VBA.Len(sLine) - lDel)
             End If
             RemoveLineNumbers = sLine
         End If

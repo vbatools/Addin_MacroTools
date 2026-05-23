@@ -14,16 +14,16 @@ Public Sub SwapEgual()
     Call Application.VBE.ActiveCodePane.GetSelection(sL, sC, eL, eC)
     If sL = eL Then
         lineText = Application.VBE.ActiveCodePane.codeModule.Lines(sL, 1)
-        NewText = VBA.mid(lineText, 1, sC - 1) & SwapEgualText(VBA.mid(lineText, sC, eC - sC)) & VBA.mid(lineText, eC)
+        NewText = VBA.Mid(lineText, 1, sC - 1) & SwapEgualText(VBA.Mid(lineText, sC, eC - sC)) & VBA.Mid(lineText, eC)
         If NewText <> vbNullString Then Call Application.VBE.ActiveCodePane.codeModule.ReplaceLine(sL, NewText)
     Else
         For i = sL To eL
             NewText = vbNullString
             lineText = Application.VBE.ActiveCodePane.codeModule.Lines(i, 1)
             If i = sL Then
-                NewText = VBA.mid(lineText, 1, sC - 1) & SwapEgualText(VBA.mid(lineText, sC))
+                NewText = VBA.Mid(lineText, 1, sC - 1) & SwapEgualText(VBA.Mid(lineText, sC))
             ElseIf i = eL Then
-                NewText = SwapEgualText(VBA.mid(lineText, 1, eC - 1)) & VBA.mid(lineText, eC)
+                NewText = SwapEgualText(VBA.Mid(lineText, 1, eC - 1)) & VBA.Mid(lineText, eC)
             Else
                 NewText = SwapEgualText(lineText)
             End If

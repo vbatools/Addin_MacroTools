@@ -484,7 +484,7 @@ Private Function GetProcedureVariable(ByVal declarationString As String) As Stri
         Dim keywordPos As Long
         keywordPos = VBA.InStrRev(declarationString, KEYWORD_PATTERN)
         If keywordPos > 0 Then
-            GetProcedureVariable = VBA.mid$(declarationString, keywordPos + VBA.Len(KEYWORD_PATTERN))
+            GetProcedureVariable = VBA.Mid$(declarationString, keywordPos + VBA.Len(KEYWORD_PATTERN))
         End If
     End If
 End Function

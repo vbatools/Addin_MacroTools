@@ -38,7 +38,7 @@ Private Sub lbOK_Click()
         sFullNameFile = wb.FullName
         wb.Close savechanges:=True
         Call WriteXML(sFullNameFile, txtLastAuthor.text, CDate(txtLastSaveTime.value))
-        Workbooks.Open FileName:=sFullNameFile
+        Workbooks.Open fileName:=sFullNameFile
         Call MsgBox("Changes saved to file!", vbInformation, "Changes:")
         Unload Me
     Else
@@ -89,7 +89,7 @@ Private Sub UserForm_Activate()
         .Clear
         On Error Resume Next
         For Each vbProj In Application.VBE.VBProjects
-            .AddItem sGetFileName(vbProj.FileName)
+            .AddItem sGetFileName(vbProj.fileName)
         Next
         On Error GoTo 0
         .value = ActiveWorkbook.Name

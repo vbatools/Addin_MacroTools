@@ -265,8 +265,8 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
             If i > 0 Then
                 If IsNumeric(Left$(sLine, i - 1)) Then
                     iCodeLineNum = val(Left$(sLine, i - 1))
-                    sLine = Trim$(mid$(sLine, i + 1))
-                    sOrigLine = Space(i) & mid$(sOrigLine, i + 1)
+                    sLine = Trim$(Mid$(sLine, i + 1))
+                    sOrigLine = Space(i) & Mid$(sOrigLine, i + 1)
                     End If
                 End If
             End If
@@ -274,7 +274,7 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
         If Len(sLine) > 0 Then
                ' Remove leading Tabs
             Do Until Left$(sLine, 1) <> Chr$(TAB_CHAR)
-                sLine = mid$(sLine, 2)
+                sLine = Mid$(sLine, 2)
                 Loop
                ' Add an extra space on the end
             sLine = sLine & " "
@@ -290,7 +290,7 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
             iScan = 0
             If isLineContinued And configAlignContinuation Then
                 If configAlignIgnoreOperators And Left$(sLine, 2) = ", " Then iParamStart = iFunctionStart - 2
-                If configAlignIgnoreOperators And (mid$(sLine, 2, 1) = " " Or Left$(sLine, 2) = ":=") And Left$(sLine, 2) <> ", " Then
+                If configAlignIgnoreOperators And (Mid$(sLine, 2, 1) = " " Or Left$(sLine, 2) = ":=") And Left$(sLine, 2) <> ", " Then
                     sLine = Space$(iParamStart - 3) & sLine
                     iLineAdjust = iLineAdjust + iParamStart - 3
                     iScan = iScan + iParamStart - 3
@@ -318,9 +318,9 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                         Case ": "
                            'A multi-statement line separator => Tidy up and continue
                         If Right$(Left$(sLine, iScan), 6) <> " Then:" Then
-                            sLine = Left$(sLine, iScan + 1) & Trim$(mid$(sLine, iScan + 2))
+                            sLine = Left$(sLine, iScan + 1) & Trim$(Mid$(sLine, iScan + 2))
                                'And check the indenting for the line segment
-                            CheckLine mid$(sLine, iStart, iScan - 1), iIn, iOut, bProcStart
+                            CheckLine Mid$(sLine, iStart, iScan - 1), iIn, iOut, bProcStart
                             If bProcStart Then bFirstDim = True
                             If iStart = 1 Then
                                 iIndents = iIndents - iOut
@@ -370,7 +370,7 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                                     End If
                                    'Work out the new spacing
                                 sLeft = RTrim$(Left$(sLine, iScan))
-                                sLine = sLeft & Space$(iGap) & mid$(sLine, iScan + 1)
+                                sLine = sLeft & Space$(iGap) & Mid$(sLine, iScan + 1)
                                    'Update the counters
                                 iLineAdjust = iLineAdjust + iGap + Len(sLeft) - iScan
                                 iScan = Len(sLeft) + iGap + 3
@@ -378,7 +378,7 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                             Else
                                'Not aligning Dims, so remove any existing spacing
                             iScan = Len(RTrim$(Left$(sLine, iScan)))
-                            sLine = RTrim$(Left$(sLine, iScan)) & " " & Trim$(mid$(sLine, iScan + 1))
+                            sLine = RTrim$(Left$(sLine, iScan)) & " " & Trim$(Mid$(sLine, iScan + 1))
                             iScan = iScan + 3
                             End If
                         Case "'", "Rem "
@@ -399,9 +399,9 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                             Else
                                'New comment at the end of a line
                                'Make sure it's a proper 'Rem'
-                            If sItem = "Rem " And mid$(sLine, iScan - 1, 1) <> " " And mid$(sLine, iScan - 1, 1) <> ":" Then GoTo PTR_NEXT_PART
+                            If sItem = "Rem " And Mid$(sLine, iScan - 1, 1) <> " " And Mid$(sLine, iScan - 1, 1) <> ":" Then GoTo PTR_NEXT_PART
                                'Check the indenting of the previous code segment
-                            CheckLine mid$(sLine, iStart, iScan - 1), iIn, iOut, bProcStart
+                            CheckLine Mid$(sLine, iStart, iScan - 1), iIn, iOut, bProcStart
                             If bProcStart Then bFirstDim = True
                             If iStart = 1 Then
                                 iIndents = iIndents - iOut
@@ -412,7 +412,7 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                                 End If
                                'Get the text before the comment, and the comment text
                             sLeft = Trim$(Left$(sLine, iScan - 1))
-                            sRight = Trim$(mid$(sLine, iScan))
+                            sRight = Trim$(Mid$(sLine, iScan))
                                'Indent the code part of the line
                             If bAlreadyPadded Then
                                 sLine = RTrim$(Left$(sLine, iScan - 1))
@@ -456,9 +456,9 @@ Public Sub RebuildCodeArray(ByRef asCodeLines() As String)
                             sLine = sLine & Space$(iGap) & sRight
                             End If
                            'Work out where the text of the comment starts, to align the next line
-                        If mid$(sLine, iCommentStart, 4) = "Rem " Then iCommentStart = iCommentStart + 3
-                        If mid$(sLine, iCommentStart, 1) = "'" Then iCommentStart = iCommentStart + 1
-                        Do Until mid$(sLine, iCommentStart, 1) <> " "
+                        If Mid$(sLine, iCommentStart, 4) = "Rem " Then iCommentStart = iCommentStart + 3
+                        If Mid$(sLine, iCommentStart, 1) = "'" Then iCommentStart = iCommentStart + 1
+                        Do Until Mid$(sLine, iCommentStart, 1) <> " "
                             iCommentStart = iCommentStart + 1
                             Loop
                         iCommentStart = iCommentStart - 1
@@ -494,7 +494,7 @@ PTR_NEXT_PART:
             If iStart < Len(sLine) Then
                 If Not isLineContinued Then bProcStart = False
                    'Check the indenting of the remaining code segment
-                CheckLine mid$(sLine, iStart), iIn, iOut, bProcStart
+                CheckLine Mid$(sLine, iStart), iIn, iOut, bProcStart
                 If bProcStart Then bFirstDim = True
                 If iStart = 1 Then
                     iIndents = iIndents - iOut
@@ -539,7 +539,7 @@ PTR_REPLACE_LINE:
         If iCodeLineNum > -1 Then
             sCodeLineNum = CStr(iCodeLineNum)
             If Len(Trim$(Left$(sLine, Len(sCodeLineNum) + 1))) = 0 Then
-                sLine = sCodeLineNum & mid$(sLine, Len(sCodeLineNum) + 1)
+                sLine = sCodeLineNum & Mid$(sLine, Len(sCodeLineNum) + 1)
                 Else
                 sLine = sCodeLineNum & " " & Trim$(sLine)
                 End If
@@ -633,7 +633,7 @@ Private Function CheckLine( _
            ' Check for indenting within the code
         For i = LBound(keywordsIndentStart) To UBound(keywordsIndentStart)
             sMatch = keywordsIndentStart(i)
-            If (Left$(sLine, Len(sMatch)) = sMatch) And ((mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (mid$(sLine, Len(sMatch) + 1, 1) = ":")) Then
+            If (Left$(sLine, Len(sMatch)) = sMatch) And ((Mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (Mid$(sLine, Len(sMatch) + 1, 1) = ":")) Then
                 iIndentNext = iIndentNext + 1
                 End If
             Next
@@ -641,7 +641,7 @@ Private Function CheckLine( _
         For i = LBound(keywordsIndentEnd) To UBound(keywordsIndentEnd)
             sMatch = keywordsIndentEnd(i)
                'Check at start of line for 'real' outdenting
-            If (Left$(sLine, Len(sMatch)) = sMatch) And ((mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (mid$(sLine, Len(sMatch) + 1, 1) = ":" And mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
+            If (Left$(sLine, Len(sMatch)) = sMatch) And ((Mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (Mid$(sLine, Len(sMatch) + 1, 1) = ":" And Mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
                 iOutdentThis = iOutdentThis + 1
                 End If
             Next
@@ -649,7 +649,7 @@ Private Function CheckLine( _
        'Check procedure-level indenting
     For i = LBound(keywordsProcStart) To UBound(keywordsProcStart)
         sMatch = keywordsProcStart(i)
-        If (Left$(sLine, Len(sMatch)) = sMatch) And ((mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (mid$(sLine, Len(sMatch) + 1, 1) = ":" And mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
+        If (Left$(sLine, Len(sMatch)) = sMatch) And ((Mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (Mid$(sLine, Len(sMatch) + 1, 1) = ":" And Mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
             bProcStart = True
             isFirstProcLine = True
                'Don't indent within Type or Enum constructs
@@ -665,7 +665,7 @@ Private Function CheckLine( _
        'Check procedure-level outdenting
     For i = LBound(keywordsProcEnd) To UBound(keywordsProcEnd)
         sMatch = keywordsProcEnd(i)
-        If (Left$(sLine, Len(sMatch)) = sMatch) And ((mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (mid$(sLine, Len(sMatch) + 1, 1) = ":" And mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
+        If (Left$(sLine, Len(sMatch)) = sMatch) And ((Mid$(sLine, Len(sMatch) + 1, 1) = " ") Or (Mid$(sLine, Len(sMatch) + 1, 1) = ":" And Mid$(sLine, Len(sMatch) + 2, 1) <> "=")) Then
                'Don't indent within Type or Enum constructs
             If Right$(sMatch, 4) = "Type" Or Right$(sMatch, 4) = "Enum" Or configIndentProcedure Then
                 iOutdentThis = iOutdentThis + 1
@@ -685,7 +685,7 @@ Private Function CheckLine( _
         Do Until i = 0
             j = InStr(i + 1, sLine, """")
             If j = 0 Then j = Len(sLine)
-            sLine = Left$(sLine, i - 1) & mid$(sLine, j + 1)
+            sLine = Left$(sLine, i - 1) & Mid$(sLine, j + 1)
             i = InStr(1, sLine, """")
             Loop
            'And strip comments
@@ -700,7 +700,7 @@ Private Function CheckLine( _
         isInsideIfBlock = (Right$(Trim$(sLine), 2) = " _")
         If i > 0 Then
                ' If there's something after the Then, we don't indent the If
-            If Trim$(mid$(sLine, i + 5)) <> vbNullString Then iIndentNext = 0
+            If Trim$(Mid$(sLine, i + 5)) <> vbNullString Then iIndentNext = 0
                ' No need to check next time around
             isInsideIfBlock = False
             End If
@@ -732,7 +732,7 @@ Private Function fnAlignFunction(ByVal sLine As String, ByRef bFirstLine As Bool
     iChar = InStr(1, sLine, " ")
     If iChar > 1 Then
         If IsNumeric(Left$(sLine, iChar - 1)) Then
-            sLine = mid$(sLine, iChar + 1)
+            sLine = Mid$(sLine, iChar + 1)
             iLPad = iChar
             End If
         End If
@@ -751,7 +751,7 @@ Private Function fnAlignFunction(ByVal sLine As String, ByRef bFirstLine As Bool
     iBrackets = 0
     iSpace = 999
     For iChar = iCheck To Len(sLine)
-        Select Case mid$(sLine, iChar, 1)
+        Select Case Mid$(sLine, iChar, 1)
             Case """"
                    'A String => jump to the end of it
                 iChar = InStr(iChar + 1, sLine, """")
@@ -772,7 +772,7 @@ Private Function fnAlignFunction(ByVal sLine As String, ByRef bFirstLine As Bool
                     Loop
                 If coBrackets.Count > iFirstThisLine Then coBrackets.Remove coBrackets.Count
                 Case " "
-                If mid$(sLine, iChar, 3) = " = " Then
+                If Mid$(sLine, iChar, 3) = " = " Then
                        'Space before an = sign => remember it to align to later
                     bFound = False
                     For iAlign = 1 To coBrackets.Count
@@ -795,7 +795,7 @@ Private Function fnAlignFunction(ByVal sLine As String, ByRef bFirstLine As Bool
                     ElseIf iChar > 5 Then
                        'Clear the collection if we find a Then in an If...Then and set the
                        'indenting to align with the bit after the "If "
-                    If mid$(sLine, iChar - 5, 6) = " Then " Then
+                    If Mid$(sLine, iChar - 5, 6) = " Then " Then
                         Do Until coBrackets.Count <= 1
                             coBrackets.Remove coBrackets.Count
                             Loop
@@ -807,12 +807,12 @@ Private Function fnAlignFunction(ByVal sLine As String, ByRef bFirstLine As Bool
                 vAlign(2) = iChar + iLPad + 2
                 coBrackets.Add vAlign
                 Case ":"
-                If mid$(sLine, iChar, 2) = ":=" Then
+                If Mid$(sLine, iChar, 2) = ":=" Then
                        'A named paremeter => remember to align to after the name
                     vAlign(1) = ","
                     vAlign(2) = iChar + iLPad + 2
                     coBrackets.Add vAlign
-                    ElseIf mid$(sLine, iChar, 2) = ": " Then
+                    ElseIf Mid$(sLine, iChar, 2) = ": " Then
                        'A new line section, so clear the brackets
                     Set coBrackets = New Collection
                     iChar = iChar + 1

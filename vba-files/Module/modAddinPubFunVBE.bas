@@ -401,7 +401,7 @@ Public Function FormatSingleLineColon(ByVal sCode As String) As String
 
        ' Iterate through each character of the source string
     For i = 1 To Len(sCode)
-        currentChar = mid$(sCode, i, 1)
+        currentChar = Mid$(sCode, i, 1)
 
            ' When a quote is encountered, toggle the 'inside string' state flag
         If currentChar = """" Then
@@ -417,7 +417,7 @@ Public Function FormatSingleLineColon(ByVal sCode As String) As String
                 Else
                    ' Check the next character (usually a space follows a colon)
                 If i < Len(sCode) Then
-                    nextChar = VBA.mid$(sCode, i + 1, 1)
+                    nextChar = VBA.Mid$(sCode, i + 1, 1)
                     If nextChar = " " Then
                            ' Replace ": " with a line break
                         result = result & vbNewLine

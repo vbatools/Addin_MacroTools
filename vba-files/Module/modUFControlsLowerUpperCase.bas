@@ -109,16 +109,16 @@ Public Sub toUpperCase()
 
     If sL = eL Then
         lineText = Application.VBE.ActiveCodePane.codeModule.Lines(sL, 1)
-        NewText = VBA.mid(lineText, 1, sC - 1) & VBA.UCase$(VBA.mid(lineText, sC, eC - sC)) & VBA.mid(lineText, eC)
+        NewText = VBA.Mid(lineText, 1, sC - 1) & VBA.UCase$(VBA.Mid(lineText, sC, eC - sC)) & VBA.Mid(lineText, eC)
         If NewText <> vbNullString Then Call Application.VBE.ActiveCodePane.codeModule.ReplaceLine(sL, NewText)
     Else
         For i = sL To eL
             NewText = ""
             lineText = Application.VBE.ActiveCodePane.codeModule.Lines(i, 1)
             If i = sL Then
-                NewText = VBA.mid(lineText, 1, sC - 1) & VBA.UCase$(VBA.mid(lineText, sC))
+                NewText = VBA.Mid(lineText, 1, sC - 1) & VBA.UCase$(VBA.Mid(lineText, sC))
             ElseIf i = eL Then
-                NewText = VBA.UCase$(VBA.mid(lineText, 1, eC - 1)) & VBA.mid(lineText, eC)
+                NewText = VBA.UCase$(VBA.Mid(lineText, 1, eC - 1)) & VBA.Mid(lineText, eC)
             Else
                 NewText = VBA.UCase$(lineText)
             End If
@@ -153,16 +153,16 @@ Public Sub toLowerCase()
 
     If sL = eL Then
         lineText = Application.VBE.ActiveCodePane.codeModule.Lines(sL, 1)
-        NewText = VBA.mid(lineText, 1, sC - 1) & VBA.LCase(VBA.mid(lineText, sC, eC - sC)) & VBA.mid(lineText, eC)
+        NewText = VBA.Mid(lineText, 1, sC - 1) & VBA.LCase(VBA.Mid(lineText, sC, eC - sC)) & VBA.Mid(lineText, eC)
         If NewText <> vbNullString Then Call Application.VBE.ActiveCodePane.codeModule.ReplaceLine(sL, NewText)
     Else
         For i = sL To eL
             NewText = ""
             lineText = Application.VBE.ActiveCodePane.codeModule.Lines(i, 1)
             If i = sL Then
-                NewText = VBA.mid(lineText, 1, sC - 1) & VBA.LCase(VBA.mid(lineText, sC))
+                NewText = VBA.Mid(lineText, 1, sC - 1) & VBA.LCase(VBA.Mid(lineText, sC))
             ElseIf i = eL Then
-                NewText = VBA.LCase(VBA.mid(lineText, 1, eC - 1)) & VBA.mid(lineText, eC)
+                NewText = VBA.LCase(VBA.Mid(lineText, 1, eC - 1)) & VBA.Mid(lineText, eC)
             Else
                 NewText = VBA.LCase(lineText)
             End If

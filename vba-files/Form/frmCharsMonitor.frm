@@ -97,7 +97,7 @@ Private Function addArrayFormString(ByVal sTxt As String) As Variant
     n = Len(sTxt): ReDim arr(1 To n, 1 To 5)
     For i = LBound(arr) To UBound(arr)
         arr(i, 1) = i
-        sChar = VBA.mid$(sTxt, i, 1)
+        sChar = VBA.Mid$(sTxt, i, 1)
         arr(i, 2) = sChar
         arr(i, 3) = VBA.Asc(sChar)
         arr(i, 4) = VBA.AscW(sChar)

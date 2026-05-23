@@ -22,7 +22,7 @@ Public Sub subOptionsForm()
     Dim sActiveVBProject As String
 
     On Error Resume Next
-    sActiveVBProject = Application.VBE.ActiveVBProject.FileName
+    sActiveVBProject = Application.VBE.ActiveVBProject.fileName
     On Error GoTo 0
 
     On Error GoTo ErrorHandler

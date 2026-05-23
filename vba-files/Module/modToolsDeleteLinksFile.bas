@@ -357,7 +357,7 @@ Private Sub CheckDataValidationLinks(wksht As Worksheet, wkbk As Workbook, ByRef
     End If
 
     ' Output results for data validation
-    For Each key In dataValExtLinkRanges.keys
+    For Each key In dataValExtLinkRanges.Keys
         contiguousAddresses = VBA.Split(dataValExtLinkRanges(key).Address, ",")
         For i = 0 To UBound(contiguousAddresses)
             numLinks = numLinks + 1
@@ -381,7 +381,7 @@ Private Sub CheckDataValidationLinks(wksht As Worksheet, wkbk As Workbook, ByRef
 End Sub
 
 Private Sub CheckNamedRangeLinks(wkbk As Workbook, ByRef numLinks As Long)
-    Dim fso         As Object
+    Dim FSO         As Object
     Dim startPos    As Long
     Dim endPos      As Long
     Dim pathPos     As Long
@@ -390,7 +390,7 @@ Private Sub CheckNamedRangeLinks(wkbk As Workbook, ByRef numLinks As Long)
     Dim iCount      As Integer
     Dim FilePath    As String
 
-    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set FSO = CreateObject("Scripting.FileSystemObject")
     delCt = 0
     iCount = wkbk.Names.Count
 
@@ -409,8 +409,8 @@ Private Sub CheckNamedRangeLinks(wkbk As Workbook, ByRef numLinks As Long)
                         pathPos = VBA.InStr(1, wkbk.Names(nameCnt).RefersTo, "\")
 
                         If startPos > 0 And endPos > 0 And pathPos > 0 Then
-                            FilePath = VBA.Replace(VBA.mid(wkbk.Names(nameCnt).RefersTo, startPos + 2, endPos - startPos - 2), "[", "")
-                            If Not fso.FileExists(FilePath) Then
+                            FilePath = VBA.Replace(VBA.Mid(wkbk.Names(nameCnt).RefersTo, startPos + 2, endPos - startPos - 2), "[", "")
+                            If Not FSO.FileExists(FilePath) Then
                                 wkbk.Names(nameCnt).Delete
                                 delCt = delCt + 1
                             Else
@@ -432,7 +432,7 @@ Private Sub CheckNamedRangeLinks(wkbk As Workbook, ByRef numLinks As Long)
         Next nameCnt
     End If
 
-    Set fso = Nothing
+    Set FSO = Nothing
 
     ' Report on deleted names
     If delCt > 0 Then

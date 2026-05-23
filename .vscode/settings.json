@@ -1,0 +1,6 @@
+{
+  "[vba]": {
+    "files.encoding": "windows1252"
+  },
+  "files.autoGuessEncoding": true
+}

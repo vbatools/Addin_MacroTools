@@ -32,7 +32,7 @@ Public Sub ReNameLiteralsFile()
     Set wb = getWorkBook(sNameFile)
     If wb Is Nothing Then
         Application.DisplayAlerts = False
-        Set wb = Workbooks.Open(FileName:=sPath, UpdateLinks:=0)
+        Set wb = Workbooks.Open(fileName:=sPath, UpdateLinks:=0)
         Application.DisplayAlerts = True
     End If
     Set vbProj = wb.vbProject

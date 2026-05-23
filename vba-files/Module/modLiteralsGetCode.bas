@@ -53,11 +53,11 @@ Private Sub ExtractQuotedStrings(ByRef oDic As Dictionary, ByVal sNameModule As 
     Dim arrData(1 To 1, 1 To 2) As String
 
     For i = 1 To Len(sLineCode)
-        char = mid$(sLineCode, i, 1)
+        char = Mid$(sLineCode, i, 1)
         If char = QUOTE_CHAR Then
             If inQuotes Then
                 If i < Len(sLineCode) Then
-                    nextChar = mid$(sLineCode, i + 1, 1)
+                    nextChar = Mid$(sLineCode, i + 1, 1)
                     If nextChar = QUOTE_CHAR Then
                         currentString = currentString & QUOTE_CHAR & QUOTE_CHAR
                         i = i + 1

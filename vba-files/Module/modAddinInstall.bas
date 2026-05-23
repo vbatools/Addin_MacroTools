@@ -63,9 +63,9 @@ Public Sub InstallationAddinMacroTools()
     Application.EnableEvents = False
     Application.DisplayAlerts = False
 
-    ThisWorkbook.SaveAs FileName:=sFullName, FileFormat:=xlOpenXMLAddIn
+    ThisWorkbook.SaveAs fileName:=sFullName, FileFormat:=xlOpenXMLAddIn
 
-    Call AddIns.Add(FileName:=sFullName)
+    Call AddIns.Add(fileName:=sFullName)
     AddIns(modAddinConst.NAME_ADDIN).Installed = True
 
     Application.EnableEvents = True
@@ -94,7 +94,7 @@ Private Function ReadTableDataIntoTBArray(ByRef targetWorkbook As Workbook, _
                             ByRef shName As String, _
                             ByRef tableNames As Variant) As TB()
 
-    If Not IsArray(tableNames) Then
+    If Not isArray(tableNames) Then
         Err.Raise vbObjectError + 1, "GetTBLists", "An array of table names is expected. Received:" & TypeName(tableNames)
     End If
 

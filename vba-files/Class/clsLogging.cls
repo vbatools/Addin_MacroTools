@@ -66,10 +66,10 @@ Public Property Get FilePathLog() As String
 End Property
 
 ' Sets the log file name (without extension)
-Public Property Let FileNameLog(ByVal FileName As String)
+Public Property Let FileNameLog(ByVal fileName As String)
     Dim sName As String
 
-    sName = Trim$(FileName)
+    sName = Trim$(fileName)
     If Len(sName) = 0 Then
         sName = DEFAULT_LOG_FILENAME
     End If

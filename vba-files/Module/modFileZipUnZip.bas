@@ -2,7 +2,7 @@ Attribute VB_Name = "modFileZipUnZip"
 Option Explicit
 Option Private Module
 
-Private Const TYPE_FILES    As String = "*.xlsm;*.xlsb;*.xlam;*.xlsx;*.docm;*.dotm;*.dotx;*.docx;*.pptx;*.pptm;*.potx;*.potm"
+Public Const TYPE_FILES    As String = "*.xlsm;*.xlsb;*.xlam;*.xlsx;*.docm;*.dotm;*.dotx;*.docx;*.pptx;*.pptm;*.potx;*.potm"
 Private Const EXT_ZIP As String = ".zip"
 
 Public Sub UnZipFile()

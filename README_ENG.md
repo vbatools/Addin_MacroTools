@@ -72,7 +72,7 @@ The add-in integrates into the Visual Basic Editor (VBE) environment via **Ribbo
 - **Formatting Constructor** — format string generator
 - **Procedure Constructor** — procedure declaration generator
 - **TODO List** — task management in code
-- **Code Snippets** — ready-made solutions library
+- **Code Snippets** — [ready-made solutions library](https://github.com/vbatools/Addin_MacroToolsVBA_Snippets)
 - **Regex Tester** — RegExp debugging
 - **Remove External Links** — find and remove external references
 - **Toggle A1/R1C1** — Excel reference style

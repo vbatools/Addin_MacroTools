@@ -106,6 +106,14 @@ Private Sub btnExportSnippets(control As IRibbonControl)
     Call addSnipetsDirectory
 End Sub
 
+Private Sub btnAddJSONSnippets(control As IRibbonControl)
+    Call AddJSONSnippetsLocalFolder
+End Sub
+
+Private Sub btnImportSnippetsLockalJSON(control As IRibbonControl)
+    Call ReadSnippetsJsonFromLockalJSON
+End Sub
+
 Private Sub btnImportSnippets(control As IRibbonControl)
     Call ReadSnippetsJsonFromGitHub
 End Sub

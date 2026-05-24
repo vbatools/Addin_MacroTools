@@ -70,6 +70,24 @@ ErrorHandler:
     MsgBox "Error in procedure addSnipetsDir: " & Err.Description, vbCritical
 End Sub
 
+Private Sub addJSONFromDirectory()
+
+    Dim sPathRoot   As String
+    
+    sPathRoot = Environ("USERPROFILE") & Application.PathSeparator & "Desktop" & Application.PathSeparator & m_ROOT_FOLDER
+    If Application.Workbooks.Count > 0 Then
+        If ActiveWorkbook.Path <> vbNullString Then
+            sPathRoot = ActiveWorkbook.Path & Application.PathSeparator & m_ROOT_FOLDER
+        End If
+    End If
+    
+    If Not FileHave(sPathRoot, vbDirectory) Then
+        Call MsgBox("Not finde path: " & sPathRoot, vbCritical)
+        Exit Sub
+    End If
+    Call addJSONSnippets(sPathRoot)
+End Sub
+
 Private Function addSnipetModules(ByVal sPath As String, ByVal sClassName As String, ByVal sClassCode As String) As Boolean
     Dim arrNames()  As String
     Dim arrCodes()  As String

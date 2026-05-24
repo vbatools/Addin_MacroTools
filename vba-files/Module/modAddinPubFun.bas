@@ -281,6 +281,24 @@ Public Function addTabelFromArray(ByRef arr As Variant, ByVal sDelimetr As Strin
     addTabelFromArray = VBA.Join(arrCol, vbNewLine)
 End Function
 
+Public Function getPath(ByVal sTitle As String, ByVal sPath As String) As String
+    On Error GoTo OptB_UsePatch_Change_Err
+    If sPath = vbNullString Or Not (Dir(sPath, vbDirectory) <> vbNullString) Then sPath = ThisWorkbook.Path
+    Dim sGetFolder  As String
+    With Application.FileDialog(msoFileDialogFolderPicker)        ' вывод диалогового окна
+        .ButtonName = "Выбрать": .Title = sTitle: .InitialFileName = sPath
+        If .Show <> -1 Then
+            getPath = sPath
+            Exit Function    ' если пользователь отказался от выбора папки
+        End If
+        sGetFolder = .SelectedItems(1)
+    End With
+    getPath = sGetFolder & Application.PathSeparator
+    Exit Function
+OptB_UsePatch_Change_Err:
+    MsgBox Err.Description, vbExclamation + vbOKOnly, "Ошибка:"
+End Function
+
 Public Function fileDialogFun(ByVal sPath As String, _
         ByRef bMultiSelect As Boolean, _
         Optional sExpansion As String = "*.xlsm;*.xlsb;*.xlsx") As String()

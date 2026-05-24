@@ -2,29 +2,33 @@ Attribute VB_Name = "modToolsSnippetsAddJSON"
 Option Explicit
 Option Private Module
 
-Private Const QUOTE         As String = """"
-Private Const QUOTE_COLON   As String = """: """
+Private Const QUOTE As String = """"
+Private Const QUOTE_COLON As String = """: """
 Private Const COMMA_NEW_LINE As String = ", " & vbNewLine
 
-Private Const indent        As String = "  "
-Private Const INDENT_TWO    As String = indent & indent
-Private Const INDENT_THREE  As String = INDENT_TWO & indent
+Private Const indent As String = "  "
+Private Const INDENT_TWO As String = indent & indent
+Private Const INDENT_THREE As String = INDENT_TWO & indent
 
-Public Sub addJSONFromDirectory()
-
+Public Sub AddJSONSnippetsLocalFolder()
     Dim sPathRoot   As String
-    
-    sPathRoot = Environ("USERPROFILE") & Application.PathSeparator & "Desktop" & Application.PathSeparator & m_ROOT_FOLDER
+    sPathRoot = Environ("USERPROFILE") & Application.PathSeparator & "Desktop" & Application.PathSeparator
     If Application.Workbooks.Count > 0 Then
         If ActiveWorkbook.Path <> vbNullString Then
-            sPathRoot = ActiveWorkbook.Path & Application.PathSeparator & m_ROOT_FOLDER
+            sPathRoot = ActiveWorkbook.Path & Application.PathSeparator
         End If
     End If
-    
-    If Not FileHave(sPathRoot, vbDirectory) Then
-        Call MsgBox("Not finde path: " & sPathRoot, vbCritical)
-        Exit Sub
+    sPathRoot = getPath("Please select the folder: " & m_ROOT_FOLDER, sPathRoot)
+    Dim sPolder As String
+    sPolder = sGetFileName(sPathRoot)
+    If sPolder = m_ROOT_FOLDER Then
+        Call addJSONSnippets(sPathRoot)
+    Else
+        Call MsgBox("Please select the folder: [" & m_ROOT_FOLDER & "], select folder: [" & sPolder & "]", vbCritical)
     End If
+End Sub
+
+Public Sub addJSONSnippets(ByVal sPathRoot As String)
 
     Dim fileDict    As Dictionary
     Set fileDict = getDictFile(sPathRoot)
@@ -84,7 +88,7 @@ Private Sub GetAllFiles(currentFolder As Object, ByRef fileDict As Dictionary, i
     Dim file        As Object
     Dim sKey        As String
     Dim sJSON       As String
-    
+
     If iDeep > 1 Then
         For Each file In currentFolder.Files
             With file

@@ -167,7 +167,7 @@ Private Sub addSnipetForm(ByVal sFormaName As String, ByVal sFormaFRM As String,
     sFormaFRX = GetCodeFromShape(sFormaFRX)
 
     If sFormaFRM <> vbNullString And sFormaFRX <> vbNullString Then
-        Call base64ToFile(sFormaFRM, sPath & ".frm")
+        Call saveTextToFile(sFormaFRM, sPath & ".frm")
         Call base64ToFile(sFormaFRX, sPath & ".frx")
         Call Application.VBE.ActiveVBProject.VBComponents.Import(fileName:=sPath & ".frm")
     End If

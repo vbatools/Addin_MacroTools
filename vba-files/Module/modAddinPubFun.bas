@@ -556,3 +556,46 @@ Public Function GetTargetWorkbook(ByRef wb As Workbook, ByVal sCaptionForm As St
     End With
     GetTargetWorkbook = True
 End Function
+
+Public Function saveTextToFile(ByVal txt As String, ByVal fileName As String, Optional ByVal encoding As String = "windows-1251") As Boolean
+
+    On Error Resume Next: Err.Clear
+    Dim FSO         As Object
+    Dim ts          As Object
+    Select Case encoding
+        Case "windows-1251", "", "ansi"
+            Set FSO = CreateObject("scripting.filesystemobject")
+            Set ts = FSO.CreateTextFile(fileName, True)
+            ts.Write txt: ts.Close
+            Set ts = Nothing: Set FSO = Nothing
+
+        Case "utf-16", "utf-16LE"
+            Set FSO = CreateObject("scripting.filesystemobject")
+            Set ts = FSO.CreateTextFile(fileName, True, True)
+            ts.Write txt: ts.Close
+            Set ts = Nothing: Set FSO = Nothing
+
+        Case "utf-8noBOM"
+            Dim binaryStream As Object
+            With CreateObject("ADODB.Stream")
+                .Type = 2: .Charset = "utf-8": .Open
+                .WriteText txt$
+
+                Set binaryStream = CreateObject("ADODB.Stream")
+                binaryStream.Type = 1: binaryStream.mode = 3: binaryStream.Open
+                .Position = 3: .CopyTo binaryStream
+                .flush: .Close
+                binaryStream.SaveToFile fileName$, 2
+                binaryStream.Close
+            End With
+
+        Case Else
+            With CreateObject("ADODB.Stream")
+                .Type = 2: .Charset = encoding$: .Open
+                .WriteText txt$
+                .SaveToFile fileName$, 2
+                .Close
+            End With
+    End Select
+    saveTextToFile = Err = 0: DoEvents
+End Function

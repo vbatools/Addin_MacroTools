@@ -72,58 +72,61 @@ Private Function getDictFile(ByVal sPathRoot As String) As Dictionary
 
     Dim fileDict    As Dictionary
     Set fileDict = New Dictionary
-    Call GetAllFiles(rootFolder, fileDict)
+    Call GetAllFiles(rootFolder, fileDict, 1)
     Set rootFolder = Nothing
 
     Set getDictFile = fileDict
 End Function
 
-Private Sub GetAllFiles(currentFolder As Object, ByRef fileDict As Dictionary)
+Private Sub GetAllFiles(currentFolder As Object, ByRef fileDict As Dictionary, iDeep As Long)
 
     Dim subFolder   As Object
     Dim file        As Object
     Dim sKey        As String
     Dim sJSON       As String
+    
+    If iDeep > 1 Then
+        For Each file In currentFolder.Files
+            With file
+                sKey = .ParentFolder.Path
+                If Not fileDict.Exists(.ParentFolder.Path) Then
+                    sJSON = INDENT_THREE & QUOTE & "CODE_GRUP" & QUOTE_COLON & .ParentFolder.ParentFolder.Name & QUOTE & COMMA_NEW_LINE
+                    sJSON = sJSON & INDENT_THREE & QUOTE & "CODE_SNIPPET" & QUOTE_COLON & .ParentFolder.Name & QUOTE
+                    fileDict.Add sKey, sJSON
+                Else
+                    sJSON = fileDict(sKey)
+                End If
 
-    For Each file In currentFolder.Files
-        With file
-            sKey = .ParentFolder.Path
-            If Not fileDict.Exists(.ParentFolder.Path) Then
-                sJSON = INDENT_THREE & QUOTE & "CODE_GRUP" & QUOTE_COLON & .ParentFolder.ParentFolder.Name & QUOTE & COMMA_NEW_LINE
-                sJSON = sJSON & INDENT_THREE & QUOTE & "CODE_SNIPPET" & QUOTE_COLON & .ParentFolder.Name & QUOTE
-                fileDict.Add sKey, sJSON
-            Else
-                sJSON = fileDict(sKey)
-            End If
+                Select Case .Name
+                    Case m_FILE_CODE
+                        sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & "CODE" & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_WIN1251)) & QUOTE
+                    Case m_FILE_DESC
+                        sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & "DISCRIPTION" & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_UTF8)) & QUOTE
+                    Case Else
+                        Dim sEXP As String
+                        sEXP = VBA.LCase$(getFileExeption(.Name))
 
-            Select Case .Name
-                Case m_FILE_CODE
-                    sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & "CODE" & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_WIN1251)) & QUOTE
-                Case m_FILE_DESC
-                    sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & "DISCRIPTION" & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_UTF8)) & QUOTE
-                Case Else
-                    Dim sEXP As String
-                    sEXP = VBA.LCase$(getFileExeption(.Name))
+                        Select Case sEXP
+                            Case "cls", "bas"
+                                sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_WIN1251)) & QUOTE
+                            Case "frm"
+                                sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_UTF8)) & QUOTE
+                            Case "frx"
+                                sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(fileToBase64(.Path)) & QUOTE
+                        End Select
+                        sEXP = vbNullString
+                End Select
+                fileDict(sKey) = sJSON
+                sJSON = vbNullString
+            End With
+        Next file
 
-                    Select Case sEXP
-                        Case "cls", "bas"
-                            sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_WIN1251)) & QUOTE
-                        Case "frm"
-                            sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(loadTextFromTextFile(.Path, m_ENC_UTF8)) & QUOTE
-                        Case "frx"
-                            sJSON = sJSON & COMMA_NEW_LINE & INDENT_THREE & QUOTE & .Name & QUOTE_COLON & EscapeJSON(fileToBase64(.Path)) & QUOTE
-                    End Select
-                    sEXP = vbNullString
-            End Select
-            fileDict(sKey) = sJSON
-            sJSON = vbNullString
-        End With
-    Next file
+        Set file = Nothing
+    End If
 
-    Set file = Nothing
-
+    iDeep = iDeep + 1
     For Each subFolder In currentFolder.SubFolders
-        If VBA.Left(subFolder.Name, 1) <> "." Then Call GetAllFiles(subFolder, fileDict)
+        If Left(subFolder.Name, 1) <> "." Then Call GetAllFiles(subFolder, fileDict, iDeep)
     Next subFolder
 End Sub
 

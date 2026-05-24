@@ -1,20 +1,16 @@
 Attribute VB_Name = "modToolsSnippetsParserJSON"
 Option Explicit
 
-'Public Sub test()
-'    Dim sPathJSON   As String
-'    sPathJSON = ""
-'
-'    ' Проверка существования файла
-'    If Not FileHave(sPathJSON, vbNormal) Then
-'        MsgBox "Файл не найден: " & sPathJSON, vbExclamation, "Внимание"
-'        Exit Sub
-'    End If
-'
-'    Dim sJSON       As String
-'    sJSON = loadTextFromTextFile(sPathJSON)
-'    Call parserJSONtoTableSnippets(sJSON)
-'End Sub
+Public Sub ReadSnippetsJsonFromLockalJSON()
+
+    Dim sPath()     As String
+    sPath = fileDialogFun(ThisWorkbook.Path, False, "*.json")
+    If (Not (Not (sPath))) = 0 Then Exit Sub
+
+    Dim sJSON       As String
+    sJSON = loadTextFromTextFile(sPath(1, 1), "utf-8")
+    Call parserJSONtoTableSnippets(sJSON)
+End Sub
 
 
 Sub ReadSnippetsJsonFromGitHub()
@@ -170,7 +166,7 @@ NextItem:
         .Range(2, 1).Resize(iCount, COL_COUNT).Value2 = arrtable
         .DataBodyRange.RowHeight = 15
     End With
-    
+
     MsgBox "Snippets imported successfully!", vbInformation
 
 ExitProc:
